@@ -220,6 +220,7 @@ public class WorkspacePageTest extends BaseTest {
         workspacePage.Edit_comments_to_workspace();
         homePage.WorkspacePage();
         workspacePage.Delete_comments_to_workspace();
+        //
 
     }
 
