@@ -1,6 +1,7 @@
 package methods;
 
 import com.gargoylesoftware.htmlunit.javascript.host.geo.Coordinates;
+import org.hamcrest.Matchers;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Action;
@@ -12,7 +13,9 @@ import javax.lang.model.element.Name;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.util.*;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 
 
@@ -445,12 +448,62 @@ public class WorkspacePage extends BasePage {
 
     }
 
-    public void Check_file_to_workspace() throws InterruptedException, AWTException {
+    public void Add_file() throws  InterruptedException{
+
+        WebElement file_button = driver.findElement(By.cssSelector(".icon-files"));
+        file_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        WebElement check_file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[3]/div[1]/input"));
+        check_file_checkbox.click();
+        wait_sec();
+
+        WebElement workspace_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[10]/div/div[1]"));
+        workspace_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        WebElement select_workspace_field = driver.findElement(By.cssSelector("#addtoworklist"));
+        select_workspace_field.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement choose_workspace_field = driver.findElement(By.xpath("html/body/div[11]/div[2]/select/option[2]"));
+        choose_workspace_field.click();
+        wait_sec();
+
+        WebElement add_to_workspace = driver.findElement(By.cssSelector("#addtoworkspace"));
+        add_to_workspace.click();
+        wait_sec();
+        wait_sec();
+
+        assertEquals("File(s) added to workspace successfully.", driver.findElement(By.cssSelector("div.textoFull > span")).getText());
+
+        WebElement workspace_window_button = driver.findElement(By.cssSelector(".cf-workspace"));
+        workspace_window_button.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement workspace1 = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        workspace1.isDisplayed();
+        wait_sec();
+
+        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div/i[1]"));
+        file_checkbox.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+    }
+
+    public void Check_file_add_to_workspace() throws InterruptedException, AWTException {
 
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
         wait_sec();
-        // new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div/i[1]"))).release().perform();
 
         WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div/i[1]"));
         file_checkbox.click();
@@ -458,67 +511,20 @@ public class WorkspacePage extends BasePage {
         wait_sec();
         wait_sec();
 
-        
+        java.util.List<WebElement> First = getDriver().findElement(By.id("workspaceFiles")).findElements(By.className("gradeA"));
+        Integer Firstnumber = First.size();
+        System.out.println(Firstnumber);
 
+        Add_file();
 
-        try{
+        java.util.List<WebElement> Second = getDriver().findElement(By.id("workspaceFiles")).findElements(By.className("gradeA"));
+        Integer Secondnumber = Second.size();
+        System.out.println(Secondnumber);
 
-            WebElement checkbox_button = driver.findElement(By.cssSelector(".wsfcheckbox>input"));
-            checkbox_button.isDisplayed();
-            wait_sec();
-
-
-            WebElement file_button = driver.findElement(By.cssSelector(".icon-files"));
-            file_button.click();
-            wait_sec();
-            wait_sec();
-            wait_sec();
-            wait_sec();
-
-            WebElement check_file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
-            check_file_checkbox.click();
-            wait_sec();
-
-            WebElement workspace_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[10]/div/div[1]"));
-            workspace_button.click();
-            wait_sec();
-            wait_sec();
-            wait_sec();
-
-            WebElement select_workspace_field = driver.findElement(By.cssSelector("#addtoworklist"));
-            select_workspace_field.click();
-            wait_sec();
-            wait_sec();
-
-            WebElement choose_workspace_field = driver.findElement(By.xpath("html/body/div[11]/div[2]/select/option[2]"));
-            choose_workspace_field.click();
-            wait_sec();
-
-            WebElement add_to_workspace = driver.findElement(By.cssSelector("#addtoworkspace"));
-            add_to_workspace.click();
-            wait_sec();
-            wait_sec();
-
-            assertEquals("File(s) added to workspace successfully.", driver.findElement(By.cssSelector("div.textoFull > span")).getText());
-
-            WebElement workspace_window_button = driver.findElement(By.cssSelector(".cf-workspace"));
-            workspace_window_button.click();
-            wait_sec();
-            wait_sec();
-
-            WebElement workspace1 = driver.findElement(By.cssSelector("#mainContentWrapper"));
-            workspace1.isDisplayed();
-            wait_sec();
-
-
-        }
-        catch(Exception ok){
-
-
+        assertThat("File is not added", Secondnumber, Matchers.greaterThan(Firstnumber));
 
         }
 
-    }
 
     public void Add_comments_to_workspace() throws InterruptedException, AWTException {
 

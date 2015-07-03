@@ -199,7 +199,7 @@ public class WorkspacePageTest extends BaseTest {
         startPage.finishLogin();
         HomePage homePage = new HomePage();
         WorkspacePage workspacePage = homePage.WorkspacePage();
-        workspacePage.Add_file_to_workspace();
+        workspacePage.Check_file_add_to_workspace();
 
     }
 
