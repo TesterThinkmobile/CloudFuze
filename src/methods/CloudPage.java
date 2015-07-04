@@ -21,7 +21,6 @@ public class CloudPage extends BasePage {
 
 
 
-
     public void Google_drive(String Email) throws InterruptedException {
 
         String winHandleBefore = driver.getWindowHandle();
@@ -31,7 +30,7 @@ public class CloudPage extends BasePage {
         googleDrive_button.click();
         wait_sec();
 
-      for(String winHandle : driver.getWindowHandles()){
+        for (String winHandle : driver.getWindowHandles()) {
             driver.switchTo().window(winHandle);
         }
         WebElement email_field = driver.findElement(By.cssSelector("#Email"));
@@ -60,7 +59,10 @@ public class CloudPage extends BasePage {
 
 
         driver.switchTo().window(winHandleBefore);
+
+    }
         ////////////////////////////////////////////
+    public void Check_result_googleDrive() throws InterruptedException {
         WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
         manage_clouds_button.click();
         wait_sec();
@@ -71,7 +73,46 @@ public class CloudPage extends BasePage {
         wait_sec();
         wait_sec();
 
+    }
 
+    public void Google_drive_new_user(String new_Email, String new_Password) throws InterruptedException {
+
+        String winHandleBefore = driver.getWindowHandle();
+
+        //google drive button
+        WebElement googleDrive_button = driver.findElement(By.cssSelector(".cloudImgG_DRIVE"));
+        googleDrive_button.click();
+        wait_sec();
+
+        for (String winHandle : driver.getWindowHandles()) {
+            driver.switchTo().window(winHandle);
+        }
+        WebElement email_field = driver.findElement(By.cssSelector("#Email"));
+        email_field.isDisplayed();
+        email_field.sendKeys(new_Email);
+        wait_sec();
+
+        WebElement next_button = driver.findElement(By.cssSelector("#next"));
+        next_button.click();
+        wait_sec();
+
+        WebElement password_field = driver.findElement(By.cssSelector("#Passwd"));
+        password_field.isDisplayed();
+        password_field.sendKeys(new_Password);
+        wait_sec();
+
+        WebElement signIn_button = driver.findElement(By.cssSelector("#signIn"));
+        signIn_button.click();
+        wait_sec();
+
+        WebElement submit_button = driver.findElement(By.cssSelector("#submit_approve_access"));
+        submit_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+
+        driver.switchTo().window(winHandleBefore);
 
     }
 
@@ -221,7 +262,10 @@ public class CloudPage extends BasePage {
         wait_sec();
         wait_sec();
 
-        ////////////////////////////////////////////
+    }
+
+    public void Check_result_yandex() throws InterruptedException {
+
         WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
         manage_clouds_button.click();
         wait_sec();
@@ -231,6 +275,7 @@ public class CloudPage extends BasePage {
         check_yandex_button.isDisplayed();
         wait_sec();
         wait_sec();
+
     }
 
 
@@ -383,7 +428,10 @@ public class CloudPage extends BasePage {
         wait_sec();
         wait_sec();
 
-        ////////////////////////////////////////////
+    }
+
+    public void Check_result_amazon() throws InterruptedException {
+
         WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
         manage_clouds_button.click();
         wait_sec();
@@ -393,6 +441,7 @@ public class CloudPage extends BasePage {
         check_amazon_button.isDisplayed();
         wait_sec();
         wait_sec();
+
     }
 
     public void Egnyte(String Domain, String Username, String Cloud_Password) throws InterruptedException {

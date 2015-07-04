@@ -4,7 +4,10 @@ package tests;
 import methods.CloudPage;
 import methods.HomePage;
 import methods.StartPage;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 public class CloudPageTest extends BaseTest {
 
@@ -12,7 +15,7 @@ public class CloudPageTest extends BaseTest {
 
 
     @Test
-    public void GoogleDrive() throws InterruptedException {
+    public void A_GoogleDrive() throws InterruptedException {
 
         goHome();
 
@@ -25,12 +28,51 @@ public class CloudPageTest extends BaseTest {
         HomePage homePage = new HomePage();
         CloudPage cloudPage = homePage.CloudPage();
         cloudPage.Google_drive(Email);
+        cloudPage.Check_result_googleDrive();
 
+    }
+    @Test
+    public void B_GoogleDrive_duplicate() throws InterruptedException {
+
+        goHome();
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        CloudPage cloudPage = homePage.CloudPage();
+        cloudPage.Google_drive(Email);
+        //cloudPage.Check_result_googleDrive();
+
+        assertEquals("This e-mail address is already registered. Please enter a different e-mail address.", getDriver().findElement(By.cssSelector("div.toast-message")).getText());
 
     }
 
     @Test
-    public void OneDrive() throws InterruptedException {
+    public void B_GoogleDrive_new_user() throws InterruptedException {
+
+        goHome();
+
+        String new_Email = "tester1.thinkmobiles@gmail.com";
+        String new_Password = "testertester1993";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        CloudPage cloudPage = homePage.CloudPage();
+        cloudPage.Google_drive_new_user(new_Email, new_Password );
+        cloudPage.Check_result_googleDrive();
+
+    }
+
+
+    @Test
+    public void C_OneDrive() throws InterruptedException {
 
         goHome();
 
@@ -50,7 +92,7 @@ public class CloudPageTest extends BaseTest {
     }
 
     @Test
-    public void DropBox() throws InterruptedException {
+    public void D_DropBox() throws InterruptedException {
 
         goHome();
 
@@ -70,7 +112,7 @@ public class CloudPageTest extends BaseTest {
     }
 
     @Test
-    public void Yandex() throws InterruptedException {
+    public void E_Yandex_positeve() throws InterruptedException {
 
         goHome();
 
@@ -85,11 +127,58 @@ public class CloudPageTest extends BaseTest {
         HomePage homePage = new HomePage();
         CloudPage cloudPage = homePage.CloudPage();
         cloudPage.Yandex(Cloud_name, Cloud_password);
+        cloudPage.Check_result_yandex();
 
     }
 
     @Test
-    public void Box() throws InterruptedException {
+    public void F_Yandex_negative() throws InterruptedException {
+
+        goHome();
+
+        String Cloud_name = "tralalalalalalla";
+        String Cloud_password = "tralalallalalalla";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        CloudPage cloudPage = homePage.CloudPage();
+        cloudPage.Yandex(Cloud_name, Cloud_password);
+        //cloudPage.Check_result_yandex();
+
+        assertEquals("Failed in registering Yandex Please try again", getDriver().findElement(By.cssSelector("div.toast-message")).getText());
+
+
+    }
+
+    @Test
+    public void G_Yandex_empty() throws InterruptedException {
+
+        goHome();
+
+        String Cloud_name = "";
+        String Cloud_password = "";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        CloudPage cloudPage = homePage.CloudPage();
+        cloudPage.Yandex(Cloud_name, Cloud_password);
+        //cloudPage.Check_result_yandex();
+
+        assertEquals("Please fill the required data to complete your oauth process", getDriver().findElement(By.id("errorMsg")).getText());
+
+
+    }
+
+    @Test
+    public void H_Box() throws InterruptedException {
 
         goHome();
 
@@ -109,7 +198,7 @@ public class CloudPageTest extends BaseTest {
     }
 
     @Test
-    public void CitrixShareFile() throws InterruptedException {
+    public void I_CitrixShareFile() throws InterruptedException {
 
         goHome();
 
@@ -129,7 +218,7 @@ public class CloudPageTest extends BaseTest {
     }
 
     @Test
-    public void Amazon_S3() throws InterruptedException {
+    public void J_Amazon_S3_positeve() throws InterruptedException {
 
         goHome();
 
@@ -147,11 +236,62 @@ public class CloudPageTest extends BaseTest {
         HomePage homePage = new HomePage();
         CloudPage cloudPage = homePage.CloudPage();
         cloudPage.Amazon_S3(EmailId, AccessId, Name, SecretAccessId);
+        cloudPage.Check_result_amazon();
 
     }
 
     @Test
-    public void Agnyte() throws InterruptedException {
+    public void K_Amazon_S3_negative() throws InterruptedException {
+
+        goHome();
+
+        String EmailId = "tralala" ;
+        String AccessId = "tralalalala";
+        String Name = "tralalala";
+        String SecretAccessId = "tralalalala";
+
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        CloudPage cloudPage = homePage.CloudPage();
+        cloudPage.Amazon_S3(EmailId, AccessId, Name, SecretAccessId);
+
+        assertEquals("Failed in registering Amazon S3 Please try again", getDriver().findElement(By.cssSelector("div.toast-message")).getText());
+
+
+    }
+
+    @Test
+    public void L_Amazon_S3_empty() throws InterruptedException {
+
+        goHome();
+
+        String EmailId = "" ;
+        String AccessId = "";
+        String Name = "";
+        String SecretAccessId = "";
+
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        CloudPage cloudPage = homePage.CloudPage();
+        cloudPage.Amazon_S3(EmailId, AccessId, Name, SecretAccessId);
+
+        assertEquals("Please fill the required data to complete your oauth process", getDriver().findElement(By.id("errorMsg")).getText());
+
+
+    }
+
+    @Test
+    public void M_Agnyte() throws InterruptedException {
 
         goHome();
 
@@ -172,7 +312,7 @@ public class CloudPageTest extends BaseTest {
     }
 
     @Test
-    public void Delete_cloud() throws InterruptedException {
+    public void N_Delete_cloud() throws InterruptedException {
 
         goHome();
 

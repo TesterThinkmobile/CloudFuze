@@ -118,7 +118,7 @@ public class StartPageTest extends BaseTest {
         StartPage startPage = new StartPage();
         startPage.Registration(Name,Email,Password,ConfirmPassword);
 
-        assertEquals("This email address is already registered. Please select a different email address to register a new account.", getDriver().findElement(By.cssSelector("span.statusMesg")).getText());
+        assertEquals("Password must be 6-20 characters in length.", getDriver().findElement(By.cssSelector("span.statusMesg")).getText());
 
 
     }

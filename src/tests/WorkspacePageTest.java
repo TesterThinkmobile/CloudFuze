@@ -18,7 +18,7 @@ public class WorkspacePageTest extends BaseTest {
     String value = String.valueOf(date);
 
     @Test
-    public void Create_workspace() throws InterruptedException {
+    public void A_Create_workspace() throws InterruptedException {
 
         goHome();
 
@@ -41,7 +41,7 @@ public class WorkspacePageTest extends BaseTest {
     }
 
     @Test
-    public void Create_workspace_empty() throws InterruptedException {
+    public void B_Create_workspace_empty() throws InterruptedException {
 
         goHome();
 
@@ -66,7 +66,7 @@ public class WorkspacePageTest extends BaseTest {
     }
 
     @Test
-    public void Create_workspace_with_adnvaced_settings() throws InterruptedException {
+    public void C_Create_workspace_with_adnvaced_settings() throws InterruptedException {
 
         goHome();
 
@@ -88,7 +88,7 @@ public class WorkspacePageTest extends BaseTest {
 
     }
     @Test
-    public void Create_workspace_Inside_workspace() throws InterruptedException {
+    public void D_Create_workspace_Inside_workspace() throws InterruptedException {
 
         goHome();
 
@@ -106,13 +106,14 @@ public class WorkspacePageTest extends BaseTest {
         WorkspacePage workspacePage = homePage.WorkspacePage();
         workspacePage.create_workspace_inside_workspace(Name, new_Email, Notes);
         workspacePage.Create_button(Password);
+        wait_sec();
 
         assertEquals("Workspace created successfully.", getDriver().findElement(By.cssSelector("div.textoFull > span")).getText());
 
     }
 
     @Test
-    public void Edit_workspace() throws InterruptedException {
+    public void E_Edit_workspace() throws InterruptedException {
 
         goHome();
 
@@ -133,7 +134,7 @@ public class WorkspacePageTest extends BaseTest {
     }
 
     @Test
-    public void Operation_workspace() throws InterruptedException, AWTException {
+    public void F_Operation_workspace() throws InterruptedException, AWTException {
 
         goHome();
 
@@ -153,22 +154,67 @@ public class WorkspacePageTest extends BaseTest {
         homePage.WorkspacePage();
         workspacePage.Rename_workspace(Name);
         /////////////////////////////////////
-        homePage.WorkspacePage();
-        workspacePage.Delete_workspace();
-        ///////////////////////////////////////
-
-        workspacePage.Open_file_workspace();
-        homePage.WorkspacePage();
-        workspacePage.download_file_workspace(downloadPath);
-        homePage.WorkspacePage();
-        workspacePage.rename_file_workspace(Name);
-        homePage.WorkspacePage();
-        workspacePage.delete_file();
 
 
     }
+        @Test
+        public void G_Open_file_workspace() throws InterruptedException, AWTException {
+
+            goHome();
+
+            StartPage startPage = new StartPage();
+            String Email = startPage.getProperty("email.forwork");
+            String Password = startPage.getProperty("password.forwork");
+            String downloadPath = startPage.getProperty("downloadPath");
+            startPage.Login(Email, Password);
+            startPage.finishLogin();
+            HomePage homePage = new HomePage();
+            WorkspacePage workspacePage = homePage.WorkspacePage();
+            workspacePage.Open_file_workspace();
+        }
+
     @Test
-    public void Check_button_workspace() throws InterruptedException, AWTException {
+    public void H_download_file() throws InterruptedException, AWTException {
+
+        goHome();
+
+        String Name = value + "name";
+
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        String downloadPath = startPage.getProperty("downloadPath");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        WorkspacePage workspacePage = homePage.WorkspacePage();
+        workspacePage.download_file_workspace(downloadPath);
+
+    }
+    @Test
+    public void J_rename_file() throws InterruptedException, AWTException {
+
+        goHome();
+
+        String Name = "New name test";
+
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        String downloadPath = startPage.getProperty("downloadPath");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        WorkspacePage workspacePage = homePage.WorkspacePage();
+        workspacePage.rename_file_workspace(Name);
+
+    }
+
+
+    @Test
+    public void K_Check_button_workspace() throws InterruptedException, AWTException {
 
         goHome();
 
@@ -188,7 +234,7 @@ public class WorkspacePageTest extends BaseTest {
 
 
     @Test
-    public void Check_file_in_workspace() throws InterruptedException, AWTException {
+    public void L_Check_file_in_workspace() throws InterruptedException, AWTException {
 
         goHome();
 
@@ -200,11 +246,12 @@ public class WorkspacePageTest extends BaseTest {
         HomePage homePage = new HomePage();
         WorkspacePage workspacePage = homePage.WorkspacePage();
         workspacePage.Check_file_add_to_workspace();
-
+        homePage.WorkspacePage();
+        workspacePage.Check_file_delete_to_workspace();
     }
 
     @Test
-    public void Comment_file_in_workspace() throws InterruptedException, AWTException {
+    public void M_Comment_file_in_workspace() throws InterruptedException, AWTException {
 
         goHome();
 
@@ -225,7 +272,7 @@ public class WorkspacePageTest extends BaseTest {
     }
 
     @Test
-    public void upload_file() throws InterruptedException, AWTException {
+    public void N_upload_file() throws InterruptedException, AWTException {
 
         goHome();
 
@@ -240,55 +287,54 @@ public class WorkspacePageTest extends BaseTest {
         startPage.finishLogin();
         HomePage homePage = new HomePage();
         WorkspacePage workspacePage = homePage.WorkspacePage();
-        //workspacePage.Upload_file();
+        workspacePage.Upload_file();
         workspacePage.Upload_file_to_directory();
     }
 
+
+
+//    @Test
+//    public void O_Operation_file_workspace() throws InterruptedException, AWTException {
+//
+//        goHome();
+//
+//        String Name = value + "name";
+//
+//
+//        StartPage startPage = new StartPage();
+//        String Email = startPage.getProperty("email.forwork");
+//        String Password = startPage.getProperty("password.forwork");
+//        startPage.Login(Email, Password);
+//        startPage.finishLogin();
+//        HomePage homePage = new HomePage();
+//        WorkspacePage workspacePage = homePage.WorkspacePage();
+//        workspacePage.Open_file_workspace();
+//        homePage.WorkspacePage();
+//        workspacePage.rename_file_workspace(Name);
+//        homePage.WorkspacePage();
+//        workspacePage.delete_file();
+//
+//    }
+
     @Test
-    public void download_file() throws InterruptedException, AWTException {
+    public void P_Delete_file_workspace() throws InterruptedException, AWTException {
 
         goHome();
-
-        String Name = value + "name";
 
 
         StartPage startPage = new StartPage();
         String Email = startPage.getProperty("email.forwork");
         String Password = startPage.getProperty("password.forwork");
-        String downloadPath = startPage.getProperty("downloadPath");
         startPage.Login(Email, Password);
         startPage.finishLogin();
         HomePage homePage = new HomePage();
         WorkspacePage workspacePage = homePage.WorkspacePage();
-        workspacePage.download_file_workspace(downloadPath);
-
-    }
-
-    @Test
-    public void Operation_file_workspace() throws InterruptedException, AWTException {
-
-        goHome();
-
-        String Name = value + "name";
-
-
-        StartPage startPage = new StartPage();
-        String Email = startPage.getProperty("email.forwork");
-        String Password = startPage.getProperty("password.forwork");
-        startPage.Login(Email, Password);
-        startPage.finishLogin();
-        HomePage homePage = new HomePage();
-        WorkspacePage workspacePage = homePage.WorkspacePage();
-        workspacePage.Open_file_workspace();
-        homePage.WorkspacePage();
-        workspacePage.rename_file_workspace(Name);
-        homePage.WorkspacePage();
         workspacePage.delete_file();
 
     }
 
     @Test
-    public void Multi_Delete_file_workspace() throws InterruptedException, AWTException {
+    public void Q_Multi_Delete_file_workspace() throws InterruptedException, AWTException {
 
         goHome();
 
@@ -305,7 +351,7 @@ public class WorkspacePageTest extends BaseTest {
     }
 
     @Test
-    public void Delete_fileInFolder_workspace() throws InterruptedException, AWTException {
+    public void R_Delete_fileInFolder_workspace() throws InterruptedException, AWTException {
 
         goHome();
 
@@ -322,7 +368,7 @@ public class WorkspacePageTest extends BaseTest {
     }
 
     @Test
-    public void Delete_multipleFileInFolder_workspace() throws InterruptedException, AWTException {
+    public void S_Delete_multipleFileInFolder_workspace() throws InterruptedException, AWTException {
 
         goHome();
 
@@ -338,7 +384,7 @@ public class WorkspacePageTest extends BaseTest {
 
     }
     @Test
-    public void Delete_multipleFolder_workspace() throws InterruptedException, AWTException {
+    public void T_Delete_multipleFolder_workspace() throws InterruptedException, AWTException {
 
         goHome();
 
@@ -351,6 +397,23 @@ public class WorkspacePageTest extends BaseTest {
         HomePage homePage = new HomePage();
         WorkspacePage workspacePage = homePage.WorkspacePage();
         workspacePage.delete_mupltiple_Folder();
+
+    }
+
+    @Test
+    public void U_Delete_workspace() throws InterruptedException, AWTException {
+
+        goHome();
+
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        WorkspacePage workspacePage = homePage.WorkspacePage();
+        workspacePage.Delete_workspace();
 
     }
 

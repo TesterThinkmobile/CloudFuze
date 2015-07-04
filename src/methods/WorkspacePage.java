@@ -269,7 +269,6 @@ public class WorkspacePage extends BasePage {
             wait_sec();
             new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div["+i+"]/i[1]"))).perform();
 
-
             WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[" + i + "]/input"));
             file_checkbox.click();
             wait_sec();
@@ -457,7 +456,7 @@ public class WorkspacePage extends BasePage {
         wait_sec();
         wait_sec();
 
-        WebElement check_file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[3]/div[1]/input"));
+        WebElement check_file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[2]/div[1]/input"));
         check_file_checkbox.click();
         wait_sec();
 
@@ -499,6 +498,25 @@ public class WorkspacePage extends BasePage {
         wait_sec();
     }
 
+    public void Delete() throws  InterruptedException{
+
+        WebElement delete_file_button = driver.findElement(By.cssSelector(".cf-trashcan2"));
+        delete_file_button.click();
+        wait_sec();
+
+        WebElement delete_window = driver.findElement(By.cssSelector("#deletemodal"));
+        delete_window.isDisplayed();
+        wait_sec();
+
+        //delete file in window
+        WebElement deletefile_button = driver.findElement(By.cssSelector("#CFDeleteFile"));
+        deletefile_button.click();
+        wait_sec();
+        wait_sec();
+    }
+
+
+
     public void Check_file_add_to_workspace() throws InterruptedException, AWTException {
 
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
@@ -525,6 +543,34 @@ public class WorkspacePage extends BasePage {
 
         }
 
+    public void Check_file_delete_to_workspace() throws InterruptedException, AWTException {
+
+        WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        workspace.isDisplayed();
+        wait_sec();
+
+        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div/i[1]"));
+        file_checkbox.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        java.util.List<WebElement> First = getDriver().findElement(By.id("workspaceFiles")).findElements(By.className("gradeA"));
+        Integer Firstnumber = First.size();
+        System.out.println(Firstnumber);
+
+        WebElement chose_file = driver.findElement(By.cssSelector(".wsfcheckbox>input"));
+        chose_file.click();
+        wait_sec();
+        Delete();
+
+        java.util.List<WebElement> Second = getDriver().findElement(By.id("workspaceFiles")).findElements(By.className("gradeA"));
+        Integer Secondnumber = Second.size();
+        System.out.println(Secondnumber);
+
+        assertThat("File is not added", Secondnumber, Matchers.lessThan(Firstnumber));
+
+    }
 
     public void Add_comments_to_workspace() throws InterruptedException, AWTException {
 
@@ -993,9 +1039,9 @@ public class WorkspacePage extends BasePage {
             file_button.click();
             wait_sec();
 
-            WebElement all_files_button = driver.findElement(By.cssSelector("#homeHome"));
-            all_files_button.click();
-            wait_sec();
+//            WebElement all_files_button = driver.findElement(By.cssSelector("#homeHome"));
+//            all_files_button.click();
+//            wait_sec();
 
             WebElement check_folder_checkbox = driver.findElement(By.cssSelector("div[name=FOLDER] > input[type=checkbox]"));
             check_folder_checkbox.click();
@@ -1094,20 +1140,20 @@ public class WorkspacePage extends BasePage {
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
         wait_sec();
-        new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).perform();
+        //new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).release().perform();
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector(".fileCheck"));
+        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"));
         file_checkbox.click();
         wait_sec();
         wait_sec();
 
-        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
-        open_button.click();
-        wait_sec();
-        wait_sec();
+//        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+//        open_button.click();
+//        wait_sec();
+//        wait_sec();
 
         try {
-            WebElement check_file_checkbox = driver.findElement(By.cssSelector(".wsfcheckbox>input"));
+            WebElement check_file_checkbox = driver.findElement(By.className("sorting_1"));
             check_file_checkbox.isDisplayed();
             check_file_checkbox.click();
             wait_sec();
@@ -1133,11 +1179,11 @@ public class WorkspacePage extends BasePage {
             file_button.click();
             wait_sec();
 
-            WebElement all_files_button = driver.findElement(By.cssSelector("#homeHome"));
-            all_files_button.click();
-            wait_sec();
+//            WebElement all_files_button = driver.findElement(By.cssSelector("#homeHome"));
+//            all_files_button.click();
+//            wait_sec();
 
-            WebElement check_file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
+            WebElement check_file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
             check_file_checkbox.click();
             wait_sec();
 
@@ -1172,19 +1218,19 @@ public class WorkspacePage extends BasePage {
             WebElement workspace1 = driver.findElement(By.cssSelector("#mainContentWrapper"));
             workspace1.isDisplayed();
             wait_sec();
-            new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).perform();
+//            new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).perform();
 
-            WebElement file_checkbox1 = driver.findElement(By.cssSelector(".fileCheck"));
+            WebElement file_checkbox1 = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"));
             file_checkbox1.click();
             wait_sec();
             wait_sec();
 
-            WebElement open_button1= driver.findElement(By.cssSelector(".cf-eye8"));
-            open_button1.click();
-            wait_sec();
-            wait_sec();
+//            WebElement open_button1= driver.findElement(By.cssSelector(".cf-eye8"));
+//            open_button1.click();
+//            wait_sec();
+//            wait_sec();
 
-            WebElement check_file_checkbox1 = driver.findElement(By.cssSelector(".wsfcheckbox>input"));
+            WebElement check_file_checkbox1 = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[3]/div[3]/div/div/table/tbody/tr[1]/td[1]/input"));
             check_file_checkbox1.isDisplayed();
             check_file_checkbox1.click();
             wait_sec();
@@ -1200,29 +1246,32 @@ public class WorkspacePage extends BasePage {
     }
 
 
-
-    public void Open_file_workspace() throws InterruptedException {
+public void Open_file_workspace() throws InterruptedException {
 
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
         wait_sec();
-        new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).release().perform();
+        //new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).release().perform();
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector(".fileCheck"));
+        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"));
         file_checkbox.click();
         wait_sec();
         wait_sec();
 
-        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
-        open_button.click();
-        wait_sec();
+//        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+//        open_button.click();
+//        wait_sec();
+//        wait_sec();
+
+    try{
+        WebElement check_file = driver.findElement(By.className("sorting_1"));
+        check_file.isDisplayed();
         wait_sec();
 
-        try{
-        WebElement check_file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[3]/div[3]/div/div/table/tbody/tr/td[1]/input"));
+        WebElement check_file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[3]/div[3]/div/div/table/tbody/tr[1]/td[1]/input"));
         check_file_checkbox.isDisplayed();
         check_file_checkbox.click();
-        wait_sec();
+            wait_sec();
 
         WebElement open_file_button = driver.findElement(By.cssSelector(".cf-eye8"));
         open_file_button.click();
@@ -1248,12 +1297,14 @@ public class WorkspacePage extends BasePage {
         WebElement file_button = driver.findElement(By.cssSelector(".icon-files"));
         file_button.click();
         wait_sec();
-
-        WebElement all_files_button = driver.findElement(By.cssSelector("#homeHome"));
-        all_files_button.click();
+        wait_sec();
         wait_sec();
 
-        WebElement check_file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
+//        WebElement all_files_button = driver.findElement(By.cssSelector("#homeHome"));
+//        all_files_button.click();
+//        wait_sec();
+
+        WebElement check_file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
         check_file_checkbox.click();
         wait_sec();
 
@@ -1288,19 +1339,19 @@ public class WorkspacePage extends BasePage {
         WebElement workspace1 = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace1.isDisplayed();
         wait_sec();
-        new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).release().perform();
+       // new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).release().perform();
 
-        WebElement file_checkbox1 = driver.findElement(By.cssSelector(".fileCheck"));
+        WebElement file_checkbox1 = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"));
         file_checkbox1.click();
         wait_sec();
         wait_sec();
 
-        WebElement open_button1= driver.findElement(By.cssSelector(".cf-eye8"));
-        open_button1.click();
-        wait_sec();
-        wait_sec();
+//        WebElement open_button1= driver.findElement(By.cssSelector(".cf-eye8"));
+//        open_button1.click();
+//        wait_sec();
+//        wait_sec();
 
-        WebElement check_file_checkbox1 = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[3]/div[3]/div/div/table/tbody/tr/td[1]/input"));
+        WebElement check_file_checkbox1 = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[3]/div[3]/div/div/table/tbody/tr[1]/td[1]/input"));
         check_file_checkbox1.isDisplayed();
         check_file_checkbox1.click();
         wait_sec();
@@ -1322,24 +1373,24 @@ public class WorkspacePage extends BasePage {
         wait_sec();
     }
 
-    }
+}
 
     public void rename_file_workspace(String Name) throws InterruptedException {
 
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
         wait_sec();
-        new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).perform();
+        //new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).perform();
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector(".fileCheck"));
+        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"));
         file_checkbox.click();
         wait_sec();
         wait_sec();
 
-        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
-        open_button.click();
-        wait_sec();
-        wait_sec();
+//        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+//        open_button.click();
+//        wait_sec();
+//        wait_sec();
 
     try {
         WebElement check_file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[3]/div[3]/div/div/table/tbody/tr/td[1]/input"));
@@ -1356,19 +1407,18 @@ public class WorkspacePage extends BasePage {
         rename_field.isDisplayed();
         rename_field.clear();
         rename_field.sendKeys(Name);
-        wait_sec();
-        wait_sec();
-        wait_sec();
+
 
         //rename_field.sendKeys(Keys.ENTER);
 
-        //new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[3]/div[3]/div/div/table/tbody/tr/td[3]/i[2]"))).click();
-        WebElement rename_ok_button = driver.findElement(By.cssSelector(".RenameOk"));
-        rename_ok_button.isDisplayed();
+       // new Actions(driver).moveToElement(driver.findElement(By.className(".RenameOk"))).click();
+        WebElement rename_ok_button = driver.findElement(By.className("RenameOk"));
         rename_ok_button.click();
         wait_sec();
+        wait_sec();
 
-        assertEquals("File renamed successfully.", driver.findElement(By.cssSelector("div.textoFull > span")).getText());
+        WebElement message_is_displayed = driver.findElement(By.cssSelector("div.textoFull > span"));
+        message_is_displayed.isDisplayed();
 
         WebElement new_name_displayed = driver.findElement(By.xpath("//*[contains(text(), '" + Name + "')] | //*[@value='" + Name + "']"));
         new_name_displayed.isDisplayed();
@@ -1423,17 +1473,17 @@ public class WorkspacePage extends BasePage {
         WebElement workspace1 = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace1.isDisplayed();
         wait_sec();
-        new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).release().perform();
+       // new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).release().perform();
 
-        WebElement file_checkbox1 = driver.findElement(By.cssSelector(".fileCheck"));
+        WebElement file_checkbox1 = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"));
         file_checkbox1.click();
         wait_sec();
         wait_sec();
 
-        WebElement open_button1= driver.findElement(By.cssSelector(".cf-eye8"));
-        open_button1.click();
-        wait_sec();
-        wait_sec();
+//        WebElement open_button1= driver.findElement(By.cssSelector(".cf-eye8"));
+//        open_button1.click();
+//        wait_sec();
+//        wait_sec();
 
         WebElement check_file_checkbox1 = driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[3]/div[3]/div/div/table/tbody/tr/td[1]/input"));
         check_file_checkbox1.isDisplayed();
@@ -1449,21 +1499,19 @@ public class WorkspacePage extends BasePage {
         rename_field1.isDisplayed();
         rename_field1.clear();
         rename_field1.sendKeys(Name);
-        wait_sec();
-        rename_field1.sendKeys(Keys.ENTER);
+
+
+        WebElement rename_ok_button1 = driver.findElement(By.className("RenameOk"));
+        rename_ok_button1.click();
         wait_sec();
 
-//        WebElement rename_ok_button1 = driver.findElement(By.cssSelector(".RenameOk"));
-//        rename_ok_button1.sendKeys(Keys.RETURN);
-//        wait_sec();
-
-        assertEquals("File renamed successfully.", driver.findElement(By.cssSelector("div.textoFull > span")).getText());
+        WebElement message_is_displayed = driver.findElement(By.cssSelector("div.textoFull > span"));
+        message_is_displayed.isDisplayed();
 
         WebElement new_name_displayed1 = driver.findElement(By.xpath("//*[contains(text(), '" + Name + "')] | //*[@value='" + Name + "']"));
         new_name_displayed1.isDisplayed();
         wait_sec();
     }
-
 
     }
 
@@ -1501,6 +1549,8 @@ public class WorkspacePage extends BasePage {
             //delete file in window
             WebElement deletefile_button = driver.findElement(By.cssSelector("#CFDeleteFile"));
             deletefile_button.click();
+            wait_sec();
+            wait_sec();
             wait_sec();
 
             try {
@@ -1638,6 +1688,7 @@ public class WorkspacePage extends BasePage {
             //delete file in window
             WebElement deletefile_button = driver.findElement(By.cssSelector("#CFDeleteFile"));
             deletefile_button.click();
+            wait_sec();
             wait_sec();
 
             System.out.println("Files is deleted");
