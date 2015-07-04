@@ -167,7 +167,6 @@ public class StartPage extends BasePage {
         WebElement submit_button = driver.findElement(By.cssSelector("#forgot-submit"));
         submit_button.click();
         wait_sec();
-        wait_sec();
 
 //        WebElement message_displayed = driver.findElement(By.cssSelector("#index-msg"));
 //        message_displayed.isDisplayed();

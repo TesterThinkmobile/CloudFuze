@@ -60,7 +60,8 @@ public class HomePage extends BasePage {
         driver.manage().window().maximize();
 
 
-
+            wait_sec();
+            wait_sec();
             //workspace button
             WebElement workspace_button = driver.findElement(By.cssSelector(".cf-workspace"));
             workspace_button.click();

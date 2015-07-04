@@ -150,6 +150,7 @@ public class CloudPage extends BasePage {
 
 
 
+
         try
         {
             WebElement ok_button = driver.findElement(By.cssSelector("#idBtn_Accept"));
@@ -160,14 +161,13 @@ public class CloudPage extends BasePage {
 
             driver.switchTo().window(winHandleBefore);
             ////////////////////////////////////////////
-            WebElement move_button = driver.findElement(By.cssSelector(".cf-move"));
-            move_button.click();
+            WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
+            manage_clouds_button.click();
             wait_sec();
             wait_sec();
 
-            WebElement check_oneDrive_button = driver.findElement(By.cssSelector(".move.ONEDRIVE"));
+            WebElement check_oneDrive_button = driver.findElement(By.cssSelector("#ONEDRIVE"));
             check_oneDrive_button.isDisplayed();
-            check_oneDrive_button.click();
             wait_sec();
             wait_sec();
         }

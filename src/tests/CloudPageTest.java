@@ -148,6 +148,7 @@ public class CloudPageTest extends BaseTest {
         CloudPage cloudPage = homePage.CloudPage();
         cloudPage.Yandex(Cloud_name, Cloud_password);
         //cloudPage.Check_result_yandex();
+        Thread.sleep(1000);
 
         assertEquals("Failed in registering Yandex Please try again", getDriver().findElement(By.cssSelector("div.toast-message")).getText());
 
@@ -171,6 +172,7 @@ public class CloudPageTest extends BaseTest {
         CloudPage cloudPage = homePage.CloudPage();
         cloudPage.Yandex(Cloud_name, Cloud_password);
         //cloudPage.Check_result_yandex();
+        Thread.sleep(1000);
 
         assertEquals("Please fill the required data to complete your oauth process", getDriver().findElement(By.id("errorMsg")).getText());
 
