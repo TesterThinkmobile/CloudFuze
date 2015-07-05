@@ -509,7 +509,7 @@ public class CloudPage extends BasePage {
         wait_sec();
         wait_sec();
 
-        WebElement delete_button = driver.findElement(By.xpath("html/body/section/div[3]/div/div/table/tbody/tr[8]/td[5]/i[1]"));
+        WebElement delete_button = driver.findElement(By.cssSelector("#CFDeleteCloud"));
         delete_button.click();
         wait_sec();
         wait_sec();

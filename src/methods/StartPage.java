@@ -24,9 +24,7 @@ public class StartPage extends BasePage {
     }
 
 
-
-    public void Login(String Email, String Password) throws InterruptedException
-    {
+    public void Login(String Email, String Password) throws InterruptedException {
 
         driver.manage().window().maximize();
 
@@ -48,8 +46,29 @@ public class StartPage extends BasePage {
 
     }
 
-    public void finishLogin() throws InterruptedException
-    {
+    public void Login_new(String Email_share, String Password) throws InterruptedException {
+
+        driver.manage().window().maximize();
+
+        //email field
+        WebElement email_field = driver.findElement(By.xpath("html/body/div[1]/div/div[2]/div/div/div[2]/div[1]/form/div/input[1]"));
+        email_field.sendKeys(Email_share);
+        wait_sec();
+
+        //password field
+        WebElement password_field = driver.findElement(By.xpath("html/body/div[1]/div/div[2]/div/div/div[2]/div[1]/form/div/input[2]"));
+        password_field.sendKeys(Password);
+        wait_sec();
+
+        //login button
+        WebElement login_button = driver.findElement(By.cssSelector("#login-submit"));
+        login_button.click();
+        wait_sec();
+
+
+    }
+
+    public void finishLogin() throws InterruptedException {
         // content is displayed
         WebElement content_is_displayed = driver.findElement(By.cssSelector(".container-fluid"));
         content_is_displayed.isDisplayed();
@@ -59,8 +78,7 @@ public class StartPage extends BasePage {
     }
 
 
-    public void Registration(String Name, String Email, String Password, String ConfirmPassword) throws InterruptedException
-    {
+    public void Registration(String Name, String Email, String Password, String ConfirmPassword) throws InterruptedException {
         driver.manage().window().maximize();
 
         // signup button
@@ -131,8 +149,8 @@ public class StartPage extends BasePage {
         wait_sec();
 
     }
-    public void verifyEmail(String Email, String Password) throws InterruptedException {
 
+    public void verifyEmail(String Email, String Password) throws InterruptedException {
 
 
         WebElement email_field = driver.findElement(By.xpath("html/body/div[1]/div[3]/div/form/div/input[1]"));
@@ -208,6 +226,19 @@ public class StartPage extends BasePage {
 
         WebElement swich_to_interprise_login = driver.findElement(By.cssSelector("#entLoginButton"));
         swich_to_interprise_login.isDisplayed();
+        wait_sec();
+
+    }
+
+
+    public void Logout() throws InterruptedException {
+
+
+        //login button
+        WebElement logout_button = driver.findElement(By.cssSelector("#cf-logout"));
+        logout_button.click();
+        wait_sec();
+        wait_sec();
         wait_sec();
 
     }
