@@ -208,6 +208,7 @@ public class CloudPage extends BasePage {
         email_field.isDisplayed();
         email_field.sendKeys(Cloud_email);
         wait_sec();
+        //
 
         WebElement password_field = driver.findElement(By.xpath("html/body/div[2]/div[1]/div[2]/form[1]/div[2]/div[2]/input"));
         password_field.isDisplayed();
