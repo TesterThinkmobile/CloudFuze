@@ -6,7 +6,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.internal.Locatable;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import javax.lang.model.element.Name;
 
@@ -1062,7 +1064,7 @@ public class WorkspacePage extends BasePage {
     }
 
 
-    public void Upload_file() throws InterruptedException, AWTException {
+    public void Upload_file(String Path) throws InterruptedException, AWTException {
 
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
@@ -1080,6 +1082,8 @@ public class WorkspacePage extends BasePage {
         wait_sec();
         wait_sec();
 
+
+
         WebElement upload_button = driver.findElement(By.cssSelector("#CFUploadFiles"));
         upload_button.click();
         wait_sec();
@@ -1088,7 +1092,7 @@ public class WorkspacePage extends BasePage {
         WebElement upload_field = driver.findElement(By.cssSelector(".dz-default.dz-message"));
         upload_field.click();
         Thread.sleep(5000);
-        StringSelection ss = new StringSelection("C:\\files\\1.jpg");
+        StringSelection ss = new StringSelection(Path);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 
 
@@ -1110,17 +1114,98 @@ public class WorkspacePage extends BasePage {
         robot.keyRelease(KeyEvent.VK_V);
         Thread.sleep(2000);
 
+
         //Press Enter
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
-        Thread.sleep(8000);
+        Thread.sleep(20000);
 
-        WebElement message = driver.findElement(By.cssSelector("div.textoFull > span"));
-        message.isDisplayed();
+
+
+    }
+    public void Upload_file_check() throws InterruptedException, AWTException {
+
+        WebElement comments_button = driver.findElement(By.cssSelector("#getComments"));
+        comments_button.isDisplayed();
 
     }
 
-    public void Upload_file_to_directory() throws InterruptedException, AWTException {
+    public void Upload_file_error() throws InterruptedException, AWTException {
+
+        WebElement error_button = driver.findElement(By.cssSelector(".dz-error-mark"));
+        error_button.isDisplayed();
+
+    }
+        public void Upload_file_cancel(String Path) throws InterruptedException, AWTException {
+
+        WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        workspace.isDisplayed();
+        wait_sec();
+        new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div/i[1]"))).release().perform();
+
+        WebElement file_checkbox = driver.findElement(By.cssSelector(".fileCheck"));
+        file_checkbox.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+        open_button.click();
+        wait_sec();
+        wait_sec();
+
+
+
+        WebElement upload_button = driver.findElement(By.cssSelector("#CFUploadFiles"));
+        upload_button.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement upload_field = driver.findElement(By.cssSelector(".dz-default.dz-message"));
+        upload_field.click();
+        Thread.sleep(5000);
+        StringSelection ss = new StringSelection(Path);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+
+
+        Robot robot = new Robot();
+        Thread.sleep(2000);
+
+        // Press Enter
+        robot.keyPress(KeyEvent.VK_ENTER);
+
+        // Release Enter
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+        // Press CTRL+V
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+
+        // Release CTRL+V
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_V);
+        Thread.sleep(2000);
+
+
+        //Press Enter
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        Thread.sleep(200);
+
+        WebElement cancel_button = driver.findElement(By.cssSelector(".dz-remove"));
+        cancel_button.click();
+        wait_sec();
+        wait_sec();
+            wait_sec();
+
+            driver.switchTo().alert().accept();
+//            Keyboard kb = ((RemoteWebDriver) driver).getKeyboard();
+//            kb.sendKeys(Keys.ENTER);
+            wait_sec();
+
+    }
+
+    public void Upload_file_to_directory(String Path) throws InterruptedException, AWTException {
 
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
@@ -1154,7 +1239,7 @@ public class WorkspacePage extends BasePage {
             WebElement upload_field = driver.findElement(By.cssSelector(".dz-default.dz-message"));
             upload_field.click();
             Thread.sleep(5000);
-            StringSelection ss = new StringSelection("C:\\files\\3.jpg");
+            StringSelection ss = new StringSelection(Path);
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 
 
@@ -1258,7 +1343,7 @@ public class WorkspacePage extends BasePage {
             WebElement upload_field = driver.findElement(By.cssSelector(".dz-default.dz-message"));
             upload_field.click();
             Thread.sleep(5000);
-            StringSelection ss = new StringSelection("C:\\files\\9.jpg");
+            StringSelection ss = new StringSelection("Path");
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 
             Robot robot = new Robot();
@@ -2062,7 +2147,7 @@ public void Open_file_workspace() throws InterruptedException {
 
     }
 
-    public void delete_file_inFolder() throws InterruptedException, AWTException {
+    public void delete_file_inFolder(String Path, String Path1) throws InterruptedException, AWTException {
 
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
@@ -2122,7 +2207,7 @@ public void Open_file_workspace() throws InterruptedException {
                 WebElement upload_field = driver.findElement(By.cssSelector(".dz-default.dz-message"));
                 upload_field.click();
                 Thread.sleep(5000);
-                StringSelection ss = new StringSelection("C:\\files\\2.jpg");
+                StringSelection ss = new StringSelection(Path);
                 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 
 
@@ -2283,7 +2368,7 @@ public void Open_file_workspace() throws InterruptedException {
                 WebElement upload_field = driver.findElement(By.cssSelector(".dz-default.dz-message"));
                 upload_field.click();
                 Thread.sleep(5000);
-                StringSelection ss = new StringSelection("C:\\files\\5.jpg");
+                StringSelection ss = new StringSelection(Path1);
                 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 
 
@@ -2345,7 +2430,7 @@ public void Open_file_workspace() throws InterruptedException {
     }
 
 
-    public void multiple_delete_files_inFolder() throws InterruptedException, AWTException {
+    public void multiple_delete_files_inFolder(String Path ,String Path2, String Path3,String Path1) throws InterruptedException, AWTException {
 
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
@@ -2406,7 +2491,7 @@ public void Open_file_workspace() throws InterruptedException {
                 WebElement upload_field = driver.findElement(By.cssSelector(".dz-default.dz-message"));
                 upload_field.click();
                 Thread.sleep(5000);
-                StringSelection path = new StringSelection("C:\\files\\2.jpg");
+                StringSelection path = new StringSelection(Path);
                 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(path, null);
 
 
@@ -2437,7 +2522,7 @@ public void Open_file_workspace() throws InterruptedException {
                 WebElement upload_field1 = driver.findElement(By.cssSelector(".dz-default.dz-message"));
                 upload_field1.click();
                 Thread.sleep(5000);
-                StringSelection path1 = new StringSelection("C:\\files\\6.jpg");
+                StringSelection path1 = new StringSelection(Path2);
                 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(path1, null);
 
 
@@ -2602,7 +2687,7 @@ public void Open_file_workspace() throws InterruptedException {
                 WebElement upload_field = driver.findElement(By.cssSelector(".dz-default.dz-message"));
                 upload_field.click();
                 Thread.sleep(5000);
-                StringSelection path = new StringSelection("C:\\files\\7.jpg");
+                StringSelection path = new StringSelection(Path3);
                 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(path, null);
 
 
@@ -2633,7 +2718,7 @@ public void Open_file_workspace() throws InterruptedException {
                 WebElement upload_field1 = driver.findElement(By.cssSelector(".dz-default.dz-message"));
                 upload_field1.click();
                 Thread.sleep(5000);
-                StringSelection path1 = new StringSelection("C:\\files\\8.jpg");
+                StringSelection path1 = new StringSelection(Path1);
                 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(path1, null);
 
 

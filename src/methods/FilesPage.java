@@ -24,6 +24,19 @@ public class FilesPage extends BasePage {
 
   //-------------------------------Operation with file------------------------------------
 
+    public void All_file_page() throws InterruptedException {
+
+        WebElement all_file_button = driver.findElement(By.cssSelector("#homeHome"));
+        all_file_button.click();
+        wait_sec();
+
+        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        file_checkbox.isDisplayed();
+        wait_sec();
+
+    }
+
+
     public void Open_File() throws InterruptedException {
 
         WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
@@ -176,6 +189,15 @@ public class FilesPage extends BasePage {
         WebElement new_name_displayed = driver.findElement(By.xpath("//*[contains(text(), '" + sharenamefile + "')] | //*[@value='" + sharenamefile + "']"));
         new_name_displayed.isDisplayed();
         wait_sec();
+    }
+
+    public void Share_File_icon() throws InterruptedException {
+
+        WebElement share_icon = driver.findElement(By.cssSelector(".LVSharetrue"));
+        share_icon.isDisplayed();
+        wait_sec();
+
+
     }
 
     public void Delete_Share_File() throws InterruptedException {
@@ -518,13 +540,84 @@ public class FilesPage extends BasePage {
 
     public void Share_with_me() throws InterruptedException {
 
-        WebElement share_with_me_button = driver.findElement(By.cssSelector("#CFSharedWithMe"));
+        try {
+            WebElement share_with_me_button = driver.findElement(By.cssSelector("#CFSharedWithMe"));
+            share_with_me_button.click();
+            wait_sec();
+
+            WebElement file_is_displayed = driver.findElement(By.cssSelector(".LVcheckBox>input"));
+            file_is_displayed.isDisplayed();
+            wait_sec();
+            wait_sec();
+        }
+        catch (Exception ok){
+
+            System.out.println("File was deleted in collaborator cloud ");
+        }
+
+    }
+
+    public void Share_by_me() throws InterruptedException {
+
+        WebElement share_with_me_button = driver.findElement(By.cssSelector("#CFSharedByMe"));
         share_with_me_button.click();
         wait_sec();
 
         WebElement file_is_displayed = driver.findElement(By.cssSelector(".LVcheckBox>input"));
         file_is_displayed.isDisplayed();
         wait_sec();
+        wait_sec();
+
+    }
+
+
+
+    public void Check_in_email(String ShareEmail) throws InterruptedException {
+
+
+        //go to email
+        driver.get("http://www.yopmail.com/");
+        wait_sec();
+        wait_sec();
+
+        WebElement login_field = driver.findElement(By.cssSelector("#login"));
+        login_field.sendKeys(ShareEmail);
+        System.out.println(ShareEmail);
+        wait_sec();
+
+        WebElement submit_button = driver.findElement(By.cssSelector(".sbut"));
+        submit_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        driver.switchTo().frame("ifmail");//(driver.findElement(By.cssSelector(".couponBlock>tbody>tr>td>table>tbody>tr>td>a")));
+        WebElement activate_link_button = driver.findElement(By.cssSelector(".couponBlock>tbody>tr>td>table>tbody>tr>td>a"));
+        activate_link_button.click();
+        wait_sec();
+        wait_sec();
+
+    }
+
+    public void notification_displayed() throws InterruptedException {
+
+
+
+        WebElement red_count = driver.findElement(By.cssSelector("#count"));
+        red_count.isDisplayed();
+        wait_sec();
+        wait_sec();
+
+        WebElement notification_count = driver.findElement(By.cssSelector("#notify_count"));
+        notification_count.isDisplayed();
+        wait_sec();
+
+        WebElement bell_button = driver.findElement(By.cssSelector(".cf-bell"));
+        bell_button.click();
+        wait_sec();
+
+        WebElement notification_displayed = driver.findElement(By.cssSelector(".notify_unred"));
+        notification_displayed.isDisplayed();
         wait_sec();
 
     }
@@ -554,7 +647,7 @@ public class FilesPage extends BasePage {
 
     }
 
-    public void Chose_Category_File(String CategoryName) throws InterruptedException {
+    public void Choose_Category_File(String CategoryName) throws InterruptedException {
 
         WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
         file_checkbox.isDisplayed();
@@ -577,6 +670,55 @@ public class FilesPage extends BasePage {
         Thread.sleep(4000);
 
         assertEquals("File(s) added to category successfully.", driver.findElement(By.cssSelector("div.textoFull > span")).getText());
+
+    }
+
+    public void Check_file_inCategory(String CategoryName) throws InterruptedException {
+
+        WebElement new_name_displayed = driver.findElement(By.xpath("//a[contains(text(),'" + CategoryName + "')]"));
+        new_name_displayed.isDisplayed();
+        new_name_displayed.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement file_checkbox = driver.findElement(By.cssSelector(".LVcheckBox>input"));
+        file_checkbox.isDisplayed();
+        wait_sec();
+
+    }
+
+    public void All_button_isdisplayed() throws InterruptedException {
+
+        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        file_checkbox.isDisplayed();
+        file_checkbox.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+        open_button.isDisplayed();
+
+        WebElement download_button = driver.findElement(By.cssSelector(".cf-cloud-download2"));
+        download_button.isDisplayed();
+
+        WebElement share_button = driver.findElement(By.cssSelector(".cf-share4"));
+        share_button.isDisplayed();
+
+        WebElement rename_button = driver.findElement(By.cssSelector(".cf-edit3"));
+        rename_button.isDisplayed();
+
+        WebElement delete_button = driver.findElement(By.cssSelector(".cf-trashcan2"));
+        delete_button.isDisplayed();
+
+        WebElement category_button = driver.findElement(By.cssSelector(".cf-cabinet3"));
+        category_button.isDisplayed();
+
+        WebElement workspace_button = driver.findElement(By.cssSelector(".cf-workspace"));
+        workspace_button.isDisplayed();
+
+        WebElement file_checkbox1 = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        file_checkbox1.click();
+        wait_sec();
 
     }
 
@@ -633,6 +775,31 @@ public class FilesPage extends BasePage {
         Thread.sleep(800);
 
         assertEquals("Deleting...", driver.findElement(By.cssSelector("#deleting > span.active-link1")).getText());
+        wait_sec();
+
+        System.out.println("File is deleted");
+
+    }
+
+    public void Delete_category_File() throws InterruptedException {
+
+        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
+        file_checkbox.isDisplayed();
+        file_checkbox.click();
+        wait_sec();
+
+        WebElement delete_button = driver.findElement(By.cssSelector(".cf-trashcan2"));
+        delete_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        WebElement delete_contetn_displayed = driver.findElement(By.cssSelector("#deletemodal"));
+        delete_contetn_displayed.isDisplayed();
+        wait_sec();
+
+        WebElement confirtm_delete_button = driver.findElement(By.cssSelector("#CFDeleteCatFiles"));
+        confirtm_delete_button.click();
         wait_sec();
 
         System.out.println("File is deleted");
@@ -730,7 +897,69 @@ public class FilesPage extends BasePage {
 
     }
 
+    public void Edit_category() throws InterruptedException {
 
+        WebElement edit_category = driver.findElement(By.cssSelector(".editCategory"));
+        edit_category.click();
+        wait_sec();
+
+        WebElement edit_category_field = driver.findElement(By.cssSelector(".categoryInput"));
+        edit_category_field.sendKeys("NewNameCategory");
+        wait_sec();
+
+        WebElement add_category_button = driver.findElement(By.cssSelector(".OkCategoryEdit"));
+        add_category_button.click();
+        wait_sec();
+        wait_sec();
+
+    }
+
+    public void Delete_category() throws InterruptedException {
+
+        WebElement delete_category = driver.findElement(By.cssSelector(".removeCategory"));
+        delete_category.click();
+        wait_sec();
+
+        WebElement delete_window_displayed = driver.findElement(By.cssSelector("#deletemodal"));
+        delete_window_displayed.isDisplayed();
+        wait_sec();
+
+        WebElement remove_button = driver.findElement(By.cssSelector("#CFDeleteCategory"));
+        remove_button.click();
+        wait_sec();
+        wait_sec();
+
+    }
+
+
+    public void Change_figuration_file() throws InterruptedException {
+
+        WebElement Grid_view_button = driver.findElement(By.cssSelector("#GView"));
+        Grid_view_button.isDisplayed();
+        Grid_view_button.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement files_displayed_grid = driver.findElement(By.className("filethumbnail"));
+        files_displayed_grid.isDisplayed();
+        wait_sec();
+        wait_sec();
+
+
+        WebElement List_view_button= driver.findElement(By.cssSelector("#LView"));
+        List_view_button.isDisplayed();
+        List_view_button.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement files_displayed_list = driver.findElement(By.className("panel-data"));
+        files_displayed_list.isDisplayed();
+        wait_sec();
+        wait_sec();
+
+
+
+    }
 
 
 

@@ -87,12 +87,15 @@ public class HomePage extends BasePage {
         WebElement files_button = driver.findElement(By.cssSelector(".icon-files"));
         files_button.click();
         wait_sec();
+        wait_sec();
 
         //text is displayed
         WebElement content_isDisplayed = driver.findElement(By.cssSelector("#headerText"));
         content_isDisplayed.isDisplayed();
         wait_sec();
         wait_sec();
+        wait_sec();
+
 
         return new FilesPage();
     }

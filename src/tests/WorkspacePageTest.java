@@ -561,19 +561,92 @@ public class WorkspacePageTest extends BaseTest {
         StartPage startPage = new StartPage();
         String Email = startPage.getProperty("email.forwork");
         String Password = startPage.getProperty("password.forwork");
-        String downloadPath = startPage.getProperty("downloadPath");
         startPage.Login(Email, Password);
         startPage.finishLogin();
         HomePage homePage = new HomePage();
         WorkspacePage workspacePage = homePage.WorkspacePage();
+        String dir = System.getProperty("user.dir");
+        String Path = dir + workspacePage.getProperty("path.file1");
+        System.out.println(Path);
         workspacePage.Create_Workspace(Name, new_Email, Notes);
         workspacePage.Create_button(Password);
         assertEquals("Workspace created successfully.", getDriver().findElement(By.cssSelector("div.textoFull > span")).getText());
         wait_sec();
         homePage.WorkspacePage();
-        workspacePage.Upload_file();
+        workspacePage.Upload_file(Path);
+        workspacePage.Upload_file_check();
         homePage.WorkspacePage();
         workspacePage.Delete_workspace();
+
+
+    }
+
+    @Test
+    public void N_upload_file_negative() throws InterruptedException, AWTException {
+
+        goHome();
+
+        String Name = value + "name";
+        String new_Email = value + "@yopmail.com";
+        String Notes = value+value+value;
+        String new_Name = "newfilename";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        WorkspacePage workspacePage = homePage.WorkspacePage();
+        String dir = System.getProperty("user.dir");
+        String Path = dir + workspacePage.getProperty("path.file9");
+        System.out.println(Path);
+        workspacePage.Create_Workspace(Name, new_Email, Notes);
+        workspacePage.Create_button(Password);
+        assertEquals("Workspace created successfully.", getDriver().findElement(By.cssSelector("div.textoFull > span")).getText());
+        wait_sec();
+        homePage.WorkspacePage();
+        workspacePage.Upload_file(Path);
+        workspacePage.Upload_file_check();
+        homePage.WorkspacePage();
+        workspacePage.Upload_file(Path);
+        workspacePage.Upload_file_error();
+        homePage.WorkspacePage();
+        workspacePage.Delete_workspace();
+
+
+    }
+
+    @Test
+    public void N_upload_file_cancel() throws InterruptedException, AWTException {
+
+        goHome();
+
+        String Name = value + "name";
+        String new_Email = value + "@yopmail.com";
+        String Notes = value+value+value;
+        String new_Name = "newfilename";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        WorkspacePage workspacePage = homePage.WorkspacePage();
+        String dir = System.getProperty("user.dir");
+        String Path = dir + workspacePage.getProperty("path.file10");
+        System.out.println(Path);
+        workspacePage.Create_Workspace(Name, new_Email, Notes);
+        workspacePage.Create_button(Password);
+        assertEquals("Workspace created successfully.", getDriver().findElement(By.cssSelector("div.textoFull > span")).getText());
+        wait_sec();
+        homePage.WorkspacePage();
+        workspacePage.Upload_file_cancel(Path);
+        homePage.WorkspacePage();
+        workspacePage.Delete_workspace();
+
+
 
 
     }
@@ -598,10 +671,13 @@ public class WorkspacePageTest extends BaseTest {
         WorkspacePage workspacePage = homePage.WorkspacePage();
         workspacePage.Create_Workspace(Name, new_Email, Notes);
         workspacePage.Create_button(Password);
+        String dir = System.getProperty("user.dir");
+        String Path = dir + workspacePage.getProperty("path.file2");
+        System.out.println(Path);
         assertEquals("Workspace created successfully.", getDriver().findElement(By.cssSelector("div.textoFull > span")).getText());
         wait_sec();
         homePage.WorkspacePage();
-        workspacePage.Upload_file_to_directory();
+        workspacePage.Upload_file_to_directory(Path);
         homePage.WorkspacePage();
         workspacePage.Delete_workspace();
 
@@ -717,8 +793,13 @@ public class WorkspacePageTest extends BaseTest {
         workspacePage.Create_button(Password);
         assertEquals("Workspace created successfully.", getDriver().findElement(By.cssSelector("div.textoFull > span")).getText());
         wait_sec();
+        String dir = System.getProperty("user.dir");
+        String Path = dir + workspacePage.getProperty("path.file3");
+        String Path1 = dir + workspacePage.getProperty("path.file4");
+        //String Path = dir + workspacePage.getProperty("path.file2");
+        System.out.println(Path);
         homePage.WorkspacePage();
-        workspacePage.delete_file_inFolder();
+        workspacePage.delete_file_inFolder(Path,Path1);
         homePage.WorkspacePage();
         workspacePage.Delete_workspace();
 
@@ -739,7 +820,7 @@ public class WorkspacePageTest extends BaseTest {
         StartPage startPage = new StartPage();
         String Email = startPage.getProperty("email.forwork");
         String Password = startPage.getProperty("password.forwork");
-        String downloadPath = startPage.getProperty("downloadPath");
+        //String downloadPath = startPage.getProperty("downloadPath");
         startPage.Login(Email, Password);
         startPage.finishLogin();
         HomePage homePage = new HomePage();
@@ -748,8 +829,14 @@ public class WorkspacePageTest extends BaseTest {
         workspacePage.Create_button(Password);
         assertEquals("Workspace created successfully.", getDriver().findElement(By.cssSelector("div.textoFull > span")).getText());
         wait_sec();
+        String dir = System.getProperty("user.dir");
+        String Path = dir + workspacePage.getProperty("path.file5");
+        String Path1 = dir + workspacePage.getProperty("path.file6");
+        String Path2 = dir + workspacePage.getProperty("path.file7");
+        String Path3 = dir + workspacePage.getProperty("path.file8");
+        System.out.println(Path);
         homePage.WorkspacePage();
-        workspacePage.multiple_delete_files_inFolder();
+        workspacePage.multiple_delete_files_inFolder(Path,Path2,Path3,Path1);
         homePage.WorkspacePage();
         workspacePage.Delete_workspace();
 
