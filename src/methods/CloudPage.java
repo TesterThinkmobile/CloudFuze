@@ -145,8 +145,7 @@ public class CloudPage extends BasePage {
 
         WebElement enter_button = driver.findElement(By.cssSelector("#idSIButton9"));
         enter_button.click();
-        wait_sec();
-        wait_sec();
+        Thread.sleep(2000);
 
 
 
@@ -156,35 +155,67 @@ public class CloudPage extends BasePage {
             WebElement ok_button = driver.findElement(By.cssSelector("#idBtn_Accept"));
             ok_button.click();
             wait_sec();
-            wait_sec();
-            wait_sec();
 
             driver.switchTo().window(winHandleBefore);
-            ////////////////////////////////////////////
-            WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
-            manage_clouds_button.click();
-            wait_sec();
-            wait_sec();
 
-            WebElement check_oneDrive_button = driver.findElement(By.cssSelector("#ONEDRIVE"));
-            check_oneDrive_button.isDisplayed();
-            wait_sec();
-            wait_sec();
         }
         catch(Exception ok)
         {
             driver.switchTo().window(winHandleBefore);
-            ////////////////////////////////////////////
-            WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
-            manage_clouds_button.click();
-            wait_sec();
-            wait_sec();
 
-            WebElement check_oneDrive_button = driver.findElement(By.cssSelector("#ONEDRIVE"));
-            check_oneDrive_button.isDisplayed();
-            wait_sec();
+        }
+
+    }
+
+    public void One_Drive_duplicate(String Cloud_email, String Cloud_password) throws InterruptedException {
+
+        String winHandleBefore = driver.getWindowHandle();
+
+        //oneDrive button
+        WebElement OneDrive_button = driver.findElement(By.cssSelector(".cloudImgONEDRIVE"));
+        OneDrive_button.click();
+        wait_sec();
+
+        for(String winHandle : driver.getWindowHandles()){
+            driver.switchTo().window(winHandle);
             wait_sec();
         }
+        WebElement email_field = driver.findElement(By.xpath("html/body/div[1]/div/div[2]/form/div[1]/div[4]/div/input"));
+        email_field.isDisplayed();
+        email_field.sendKeys(Cloud_email);
+        wait_sec();
+
+        WebElement password_field = driver.findElement(By.xpath("html/body/div[1]/div/div[2]/form/div[1]/div[6]/div/input"));
+        password_field.isDisplayed();
+        password_field.sendKeys(Cloud_password);
+        wait_sec();
+
+//        WebElement checkbox = driver.findElement(By.cssSelector("#idChkBx_PWD_KMSI0Pwd"));
+//        checkbox.click();
+//        wait_sec();
+
+        WebElement enter_button = driver.findElement(By.cssSelector("#idSIButton9"));
+        enter_button.click();
+        Thread.sleep(2000);
+
+
+            driver.switchTo().window(winHandleBefore);
+
+
+
+    }
+
+    public void Check_result_onedrive() throws InterruptedException {
+
+        WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
+        manage_clouds_button.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement check_googleDrive_button = driver.findElement(By.cssSelector("#ONEDRIVE"));
+        check_googleDrive_button.isDisplayed();
+        wait_sec();
+        wait_sec();
 
     }
 
@@ -197,20 +228,22 @@ public class CloudPage extends BasePage {
         dropbox_button.click();
         wait_sec();
         wait_sec();
-        wait_sec();
+
 
         for(String winHandle : driver.getWindowHandles()){
             driver.switchTo().window(winHandle);
             wait_sec();
+            wait_sec();
+            wait_sec();
 
         }
-        WebElement email_field = driver.findElement(By.xpath("html/body/div[2]/div[1]/div[2]/form[1]/div[1]/div[2]/input"));
+        WebElement email_field = driver.findElement(By.xpath("//div[2]/input"));
         email_field.isDisplayed();
         email_field.sendKeys(Cloud_email);
         wait_sec();
-        //
 
-        WebElement password_field = driver.findElement(By.xpath("html/body/div[2]/div[1]/div[2]/form[1]/div[2]/div[2]/input"));
+
+        WebElement password_field = driver.findElement(By.xpath("//div[2]/div[2]/input"));
         password_field.isDisplayed();
         password_field.sendKeys(Cloud_password);
         wait_sec();
@@ -225,16 +258,21 @@ public class CloudPage extends BasePage {
         wait_sec();
 
         driver.switchTo().window(winHandleBefore);
-        ////////////////////////////////////////////
+
+    }
+
+    public void Check_result_dropbox() throws InterruptedException {
+
         WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
         manage_clouds_button.click();
         wait_sec();
         wait_sec();
 
-        WebElement check_dropBox_button = driver.findElement(By.cssSelector("#DROP_BOX"));
-        check_dropBox_button.isDisplayed();
+        WebElement check_googleDrive_button = driver.findElement(By.cssSelector("#DROP_BOX"));
+        check_googleDrive_button.isDisplayed();
         wait_sec();
         wait_sec();
+
     }
 
     public void Yandex(String Cloud_name, String Cloud_password) throws InterruptedException {

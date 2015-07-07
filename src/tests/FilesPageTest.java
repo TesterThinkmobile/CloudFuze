@@ -43,6 +43,7 @@ public class FilesPageTest extends BaseTest {
 
         goHome();
 
+        String check_Shared_Password = "123456";
 
         StartPage startPage = new StartPage();
         String Email = startPage.getProperty("email.forwork");
@@ -51,7 +52,7 @@ public class FilesPageTest extends BaseTest {
         startPage.finishLogin();
         HomePage homePage = new HomePage();
         FilesPage filesPage = homePage.FilesPage();
-        filesPage.Open_File();
+        filesPage.Open_File(Password);
 
 
     }
@@ -198,6 +199,35 @@ public class FilesPageTest extends BaseTest {
     }
 
     @Test
+    public void G_Share_MulepleFile() throws InterruptedException {
+
+        goHome();
+
+        String Message = value + "test";
+        String ShareEmail = value + "@yopmail.com";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        FilesPage filesPage = homePage.FilesPage();
+        filesPage.Share_MultipleFile_private(ShareEmail, Message);
+        homePage.FilesPage();
+        filesPage.Share_File_icon();
+        filesPage.All_file_page();
+        filesPage.Share_File_icon();
+        filesPage.Share_by_me();
+        filesPage.Delete_Share_MultipleFile();
+
+
+
+    }
+
+
+
+    @Test
     public void G_Share_file_and_checkEmail() throws InterruptedException {
 
         goHome();
@@ -232,13 +262,16 @@ public class FilesPageTest extends BaseTest {
 
     }
 
+
     @Test
-    public void G_Share_file_with_advanced_setting() throws InterruptedException {
+    public void G_Share_File_to_multipleCollaborator() throws InterruptedException {
 
         goHome();
 
         String Message = value + "test";
         String ShareEmail = value + "@yopmail.com";
+        String ShareEmail1 = value + "new@yopmail.com";
+        String ShareEmail2 = value + "new1@yopmail.com";
 
         StartPage startPage = new StartPage();
         String Email = startPage.getProperty("email.forwork");
@@ -247,7 +280,62 @@ public class FilesPageTest extends BaseTest {
         startPage.finishLogin();
         HomePage homePage = new HomePage();
         FilesPage filesPage = homePage.FilesPage();
-        filesPage.Advanced_Setting_ShareFile(ShareEmail, Message);
+        filesPage.Share_File_private_to_MultipleCollaborator(ShareEmail, ShareEmail1, ShareEmail2, Message);
+        filesPage.Check_in_MupltipleEmail(ShareEmail,ShareEmail1,ShareEmail2);
+        String originalHandle = getDriver().getWindowHandle();
+        for (String handle : getDriver().getWindowHandles()) {
+            if (!handle.equals(originalHandle)) {
+                getDriver().switchTo().window(handle);
+                wait_sec();
+                getDriver().close();
+            }
+        }
+        getDriver().switchTo().window(originalHandle);
+        for (String handle : getDriver().getWindowHandles()) {
+            if (!handle.equals(originalHandle)) {
+                getDriver().switchTo().window(handle);
+                wait_sec();
+                getDriver().close();
+            }
+        }
+        getDriver().switchTo().window(originalHandle);
+        for (String handle : getDriver().getWindowHandles()) {
+            if (!handle.equals(originalHandle)) {
+                getDriver().switchTo().window(handle);
+                wait_sec();
+                getDriver().close();
+            }
+        }
+        getDriver().switchTo().window(originalHandle);
+
+        goHome();
+
+        homePage.FilesPage();
+        filesPage.Share_by_me();
+        filesPage.Delete_Share_File();
+
+
+
+    }
+
+    @Test
+    public void G_Share_file_with_advanced_setting() throws InterruptedException {
+
+        goHome();
+
+        String Message = value + "test";
+        String ShareEmail = value + "@yopmail.com";
+        String Share_password = "123456";
+        String Share_confirm_password = "123456";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        FilesPage filesPage = homePage.FilesPage();
+        filesPage.Advanced_Setting_ShareFile(ShareEmail, Message, Share_password, Share_confirm_password);
         filesPage.Delete_Share_File();
 
     }
@@ -339,6 +427,7 @@ public class FilesPageTest extends BaseTest {
         startPage.finishLogin();
         filesPage.notification_displayed();
         homePage.FilesPage();
+        filesPage.notification_displayed_in_files();
         filesPage.Share_with_me();
         filesPage.All_button_isdisplayed();
         filesPage.Delete_Share_File();
@@ -376,6 +465,7 @@ public class FilesPageTest extends BaseTest {
         startPage.finishLogin();
         filesPage.notification_displayed();
         homePage.FilesPage();
+        filesPage.notification_displayed_in_files();
         filesPage.Share_with_me();
         filesPage.All_button_isdisplayed();
         //filesPage.Delete_Share_File();
@@ -388,6 +478,183 @@ public class FilesPageTest extends BaseTest {
         startPage.Login_new(Email, Password);
         startPage.finishLogin();
         filesPage.Share_with_me();
+    }
+
+    @Test
+    public void G_Share_file_with_me_check_file_unshare() throws InterruptedException {
+
+        goHome();
+
+        String Message = value + "test";
+        String ShareEmail = "tester.thinkmobile@gmail.com";
+
+        String Cloud_email = "quality.cloudfuze@gmail.com";
+        String Cloud_password = "account10";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Email_share = startPage.getProperty("email.toShare");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login_new(Email_share, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        CloudPage cloudPage = homePage.CloudPage();
+        cloudPage.DropBox(Cloud_email, Cloud_password);
+        FilesPage filesPage = homePage.FilesPage();
+        filesPage.Share_File_private(ShareEmail, Message);
+        startPage.Logout();
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        filesPage.notification_displayed();
+        homePage.FilesPage();
+        filesPage.notification_displayed_in_files();
+        filesPage.Share_with_me();
+        filesPage.All_button_isdisplayed();
+        startPage.Logout();
+        startPage.Login_new(Email_share, Password);
+        startPage.finishLogin();
+        homePage.FilesPage();
+        filesPage.Share_by_me();
+        filesPage.Delete_Share_File();
+        startPage.Logout();
+        startPage.Login_new(Email, Password);
+        startPage.finishLogin();
+        filesPage.Share_with_me();
+        startPage.Logout();
+        startPage.Login_new(Email_share, Password);
+        startPage.finishLogin();
+        homePage.CloudPage();
+        cloudPage.Delete_cloud();
+
+
+    }
+
+
+    @Test
+    public void G_Share_file_with_me_check_passwordFile_positive() throws InterruptedException {
+
+        goHome();
+
+        String Message = value + "test";
+        String ShareEmail = "tester.thinkmobile@gmail.com";
+
+        String Cloud_email = "quality.cloudfuze@gmail.com";
+        String Cloud_password = "account10";
+
+        String Share_password = "123456";
+        String Share_confirm_password = "123456";
+        String check_Shared_Password = "123456";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Email_share = startPage.getProperty("email.toShare");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login_new(Email_share, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        CloudPage cloudPage = homePage.CloudPage();
+        cloudPage.DropBox(Cloud_email, Cloud_password);
+        FilesPage filesPage = homePage.FilesPage();
+        filesPage.Advanced_Setting_ShareFile(ShareEmail, Message, Share_password, Share_confirm_password);
+        startPage.Logout();
+        //---------------------------------
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        filesPage.notification_displayed();
+        homePage.FilesPage();
+        filesPage.notification_displayed_in_files();
+        filesPage.Share_with_me();
+        filesPage.All_button_isdisplayed();
+        //---------------------------------------
+        filesPage.Open_File(check_Shared_Password);
+        startPage.Logout();
+        //-------------------------------
+        startPage.Login_new(Email_share, Password);
+        startPage.finishLogin();
+        homePage.FilesPage();
+        homePage.CloudPage();
+        cloudPage.Delete_cloud();
+        startPage.Logout();
+        startPage.Login_new(Email, Password);
+        startPage.finishLogin();
+        filesPage.Share_with_me();
+
+
+    }
+
+    @Test
+    public void G_Share_file_with_me_check_passwordFile_negative() throws InterruptedException {
+
+        goHome();
+
+        String Message = value + "test";
+        String ShareEmail = "tester.thinkmobile@gmail.com";
+
+        String Cloud_email = "quality.cloudfuze@gmail.com";
+        String Cloud_password = "account10";
+
+        String Share_password = "123456";
+        String Share_confirm_password = "123456";
+        String check_Shared_Password = "654321";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Email_share = startPage.getProperty("email.toShare");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login_new(Email_share, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        CloudPage cloudPage = homePage.CloudPage();
+        cloudPage.DropBox(Cloud_email, Cloud_password);
+        FilesPage filesPage = homePage.FilesPage();
+        filesPage.Advanced_Setting_ShareFile(ShareEmail, Message, Share_password, Share_confirm_password);
+        startPage.Logout();
+        //---------------------------------
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        filesPage.notification_displayed();
+        homePage.FilesPage();
+        filesPage.notification_displayed_in_files();
+        filesPage.Share_with_me();
+        filesPage.All_button_isdisplayed();
+        //---------------------------------------
+        filesPage.Open_File_negative(check_Shared_Password);
+        //filesPage.Cancel_button_in_delete_window();
+        startPage.Logout();
+        //-------------------------------
+        startPage.Login_new(Email_share, Password);
+        startPage.finishLogin();
+        homePage.FilesPage();
+        homePage.CloudPage();
+        cloudPage.Delete_cloud();
+        startPage.Logout();
+        startPage.Login_new(Email, Password);
+        startPage.finishLogin();
+        filesPage.Share_with_me();
+
+
+    }
+
+    @Test
+    public void G_Share_file_and_delte_file_in_cloud() throws InterruptedException {
+
+        goHome();
+
+        String Message = value + "test";
+        String ShareEmail = value + "@yopmail.com";
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        FilesPage filesPage = homePage.FilesPage();
+        filesPage.Share_File_publick(ShareEmail, Message);
+        homePage.FilesPage();
+        filesPage.Delete_Share_File_in_cloud();
+        filesPage.Share_by_me();
+
     }
 
 

@@ -235,6 +235,7 @@ public class StartPage extends BasePage {
 
 
         //login button
+        wait_sec();
         WebElement logout_button = driver.findElement(By.cssSelector("#cf-logout"));
         logout_button.click();
         wait_sec();
