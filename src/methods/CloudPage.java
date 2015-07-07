@@ -356,6 +356,10 @@ public class CloudPage extends BasePage {
 
         driver.switchTo().window(winHandleBefore);
         ////////////////////////////////////////////
+    }
+
+    public void Check_result_box() throws InterruptedException {
+
         WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
         manage_clouds_button.click();
         wait_sec();
@@ -365,8 +369,8 @@ public class CloudPage extends BasePage {
         check_Box_button.isDisplayed();
         wait_sec();
         wait_sec();
-    }
 
+    }
 
     public void CitrixShareFile(String Cloud_email, String Cloud_password) throws InterruptedException {
 
@@ -396,12 +400,7 @@ public class CloudPage extends BasePage {
 
         WebElement enter_button = driver.findElement(By.cssSelector(".navlink.fwdlink"));
         enter_button.click();
-        wait_sec();
-        wait_sec();
-        wait_sec();
-        wait_sec();
-        wait_sec();
-        wait_sec();
+        Thread.sleep(25000);
 
         WebElement sharefile_emailid_field = driver.findElement(By.cssSelector("#shareFileEmailId"));
         sharefile_emailid_field.clear();
@@ -416,6 +415,11 @@ public class CloudPage extends BasePage {
 
         driver.switchTo().window(winHandleBefore);
         ////////////////////////////////////////////
+
+    }
+
+    public void Check_result_citrix() throws InterruptedException {
+
         WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
         manage_clouds_button.click();
         wait_sec();
@@ -425,6 +429,7 @@ public class CloudPage extends BasePage {
         check_citrix_button.isDisplayed();
         wait_sec();
         wait_sec();
+
     }
 
     public void Amazon_S3(String EmailId, String AccessId, String Name, String SecretAccessId) throws InterruptedException {
@@ -465,7 +470,7 @@ public class CloudPage extends BasePage {
         add_button.click();
         wait_sec();
         wait_sec();
-        wait_sec();
+
 
     }
 
@@ -528,6 +533,11 @@ public class CloudPage extends BasePage {
 
         driver.switchTo().window(winHandleBefore);
         ////////////////////////////////////////////
+
+    }
+
+    public void Check_result_egnyte() throws InterruptedException {
+
         WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
         manage_clouds_button.click();
         wait_sec();
@@ -537,6 +547,7 @@ public class CloudPage extends BasePage {
         check_egnyte_button.isDisplayed();
         wait_sec();
         wait_sec();
+
     }
 
 
