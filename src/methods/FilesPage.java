@@ -2,11 +2,12 @@ package methods;
 
 
 import org.apache.commons.io.comparator.NameFileComparator;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.testng.Assert;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.assertThat;
+import static org.openqa.selenium.lift.match.TextMatcher.text;
 import static org.testng.Assert.assertEquals;
 
 public class FilesPage extends BasePage {
@@ -25,22 +26,22 @@ public class FilesPage extends BasePage {
 
   //-------------------------------Operation with file------------------------------------
 
-    public void All_file_page() throws InterruptedException {
+    public void All_file_page(String Checkbox) throws InterruptedException {
 
         WebElement all_file_button = driver.findElement(By.cssSelector("#homeHome"));
         all_file_button.click();
         wait_sec();
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
         file_checkbox.isDisplayed();
         wait_sec();
 
     }
 
 
-    public void Open_File(String check_Shared_Password) throws InterruptedException {
+    public void Open_File(String check_Shared_Password,String Checkbox) throws InterruptedException {
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -119,9 +120,51 @@ public class FilesPage extends BasePage {
 
  }
 
-    public void Open_File_negative(String check_Shared_Password) throws InterruptedException {
+    public void Open_Folder(String check_Shared_Password,String Checkbox) throws InterruptedException {
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
+        file_checkbox.isDisplayed();
+        file_checkbox.click();
+        wait_sec();
+
+        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+        open_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        WebElement password_isDisplayed = driver.findElement(By.cssSelector("#sharePasswordModel"));
+        password_isDisplayed.isDisplayed();
+        wait_sec();
+        wait_sec();
+
+        WebElement password_filed = driver.findElement(By.xpath("html/body/div[6]/div[2]/div[1]/input"));
+        password_filed.isDisplayed();
+        password_filed.sendKeys(check_Shared_Password);
+        wait_sec();
+
+        WebElement ok_button = driver.findElement(By.cssSelector("#CFSharePwdButton"));
+        ok_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+
+        WebElement folder_displayed = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        folder_displayed.isDisplayed();
+        wait_sec();
+
+
+
+
+
+
+
+    }
+
+    public void Open_File_negative(String check_Shared_Password, String Checkbox) throws InterruptedException {
+
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -163,6 +206,51 @@ public class FilesPage extends BasePage {
 
     }
 
+    public void Open_Folder_negative(String check_Shared_Password, String Checkbox) throws InterruptedException {
+
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
+        file_checkbox.isDisplayed();
+        file_checkbox.click();
+        wait_sec();
+
+        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+        open_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        WebElement password_isDisplayed = driver.findElement(By.cssSelector("#sharePasswordModel"));
+        password_isDisplayed.isDisplayed();
+        wait_sec();
+        wait_sec();
+
+        WebElement password_filed = driver.findElement(By.xpath("html/body/div[6]/div[2]/div[1]/input"));
+        password_filed.isDisplayed();
+        password_filed.sendKeys(check_Shared_Password);
+        wait_sec();
+
+        WebElement ok_button = driver.findElement(By.cssSelector("#CFSharePwdButton"));
+        ok_button.click();
+        wait_sec();
+
+
+        WebElement message =  driver.findElement(By.cssSelector(".statusMesg"));
+        message.isDisplayed();
+        wait_sec();
+
+        WebElement cancel_button = driver.findElement(By.cssSelector("#_sharePwdClose"));
+        cancel_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        WebElement content_isDisplayed = driver.findElement(By.cssSelector("#headerText"));
+        content_isDisplayed.isDisplayed();
+        wait_sec();
+
+
+    }
+
     public void Download_File() throws InterruptedException {
 
         WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
@@ -182,14 +270,14 @@ public class FilesPage extends BasePage {
 
     }
 
-    public void Share_File_publick(String ShareEmail, String Message) throws InterruptedException {
+    public void Share_File_publick(String ShareEmail, String Message, String FileName, String Checkbox) throws InterruptedException {
 
-        WebElement file_name = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FILE')][1]/div[@class='LVfileName']"));
+        WebElement file_name = driver.findElement(By.xpath(FileName));
         file_name.isDisplayed();
         String sharenamefile = file_name.getText();
         System.out.println(sharenamefile);
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -235,14 +323,18 @@ public class FilesPage extends BasePage {
         new_name_displayed.isDisplayed();
         wait_sec();
     }
-    public void Share_File_private(String ShareEmail, String Message) throws InterruptedException {
 
-        WebElement file_name = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FILE')][1]/div[@class='LVfileName']"));
+
+
+
+    public void Share_File_private(String ShareEmail, String Message, String FileName, String Checkbox) throws InterruptedException {
+
+        WebElement file_name = driver.findElement(By.xpath(FileName));
         file_name.isDisplayed();
         String sharenamefile = file_name.getText();
         System.out.println(sharenamefile);
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -290,14 +382,15 @@ public class FilesPage extends BasePage {
         wait_sec();
     }
 
-    public void Share_File_private_to_MultipleCollaborator(String ShareEmail,String ShareEmail1,String ShareEmail2, String Message) throws InterruptedException {
 
-        WebElement file_name = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FILE')][1]/div[@class='LVfileName']"));
+    public void Share_File_private_to_MultipleCollaborator(String ShareEmail,String ShareEmail1,String ShareEmail2, String Message,String FileName, String Checkbox) throws InterruptedException {
+
+        WebElement file_name = driver.findElement(By.xpath(FileName));
         file_name.isDisplayed();
         String sharenamefile = file_name.getText();
         System.out.println(sharenamefile);
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -424,12 +517,80 @@ public class FilesPage extends BasePage {
         }
     }
 
-    public void Share_File_icon() throws InterruptedException {
 
-        WebElement share_icon = driver.findElement(By.cssSelector(".LVSharetrue"));
-        share_icon.isDisplayed();
+    public void Share_MultipleFolder_private(String ShareEmail, String Message) throws InterruptedException {
+
+
+        String[] sharenamefile = new String[4];
+
+        for (int i = 1; i <= 3; i=i+1) {
+            WebElement file_name = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FOLDER')]["+i+"]/div[@class='LVfileName']"));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", file_name);
+            file_name.isDisplayed();
+            sharenamefile[i] = file_name.getText();
+            System.out.println(sharenamefile[i]);
+
+            WebElement file_checkbox = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FOLDER')][" + i + "]/div[@class='LVcheckBox']"));
+            file_checkbox.isDisplayed();
+            file_checkbox.click();
+            wait_sec();
+        }
+        WebElement share_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[6]/div/div[1]"));
+        share_button.click();
+        wait_sec();
         wait_sec();
 
+        WebElement share_window = driver.findElement(By.cssSelector("#shareFilesModel"));
+        share_window.isDisplayed();
+        wait_sec();
+
+        WebElement share_email = driver.findElement(By.cssSelector("#shareEmailId"));
+        share_email.sendKeys(ShareEmail);
+        wait_sec();
+
+        WebElement share_add_button = driver.findElement(By.cssSelector("#searchShareUser"));
+        share_add_button.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement share_message_field = driver.findElement(By.cssSelector("#messageNotes"));
+        share_message_field.sendKeys(Message);
+        wait_sec();
+
+        // swich_inner button(to private)
+        WebElement switch_inner_button = driver.findElement(By.cssSelector(".onoffswitch"));
+        switch_inner_button.click();
+        wait_sec();
+
+        WebElement share_submit = driver.findElement(By.cssSelector("#shareSubmit"));
+        share_submit.click();
+        Thread.sleep(4000);
+
+        assertEquals("File(s) has been successfully shared.", driver.findElement(By.cssSelector("div.textoFull > span")).getText());
+
+        WebElement share_page_button = driver.findElement(By.cssSelector("#CFSharedByMe"));
+        share_page_button.click();
+        wait_sec();
+        wait_sec();
+        for (int i = 1; i <= 3; i=i+1) {
+            WebElement new_name_displayed = driver.findElement(By.xpath("//*[contains(text(), '" + sharenamefile[i] + "')] | //*[@value='" + sharenamefile[i] + "']"));
+            new_name_displayed.isDisplayed();
+            wait_sec();
+        }
+    }
+
+    public void Share_File_icon() throws InterruptedException {
+
+        try {
+            WebElement share_icon = driver.findElement(By.cssSelector(".LVSharetrue"));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", share_icon);
+            share_icon.isDisplayed();
+            wait_sec();
+        }
+        catch (Exception error){
+
+            System.out.println("File is located in folder");
+        }
 
     }
 
@@ -447,13 +608,22 @@ public class FilesPage extends BasePage {
 
         WebElement delete_file_window = driver.findElement(By.cssSelector("#deletemodal"));
         delete_file_window.isDisplayed();
+        wait_sec();
 
-        WebElement delete_file_share = driver.findElement(By.cssSelector("#CFDeleteShareBMFile"));
+        try {
+            WebElement delete_file_share = driver.findElement(By.cssSelector("#CFDeleteShareBMFile"));
+            delete_file_share.isDisplayed();
+            delete_file_share.click();
+            wait_sec();
+            wait_sec();
+        }
+        catch (Exception ok){
+        WebElement delete_file_share = driver.findElement(By.cssSelector("#CFDeleteSharedwithfile"));
         delete_file_share.isDisplayed();
         delete_file_share.click();
         wait_sec();
         wait_sec();
-
+        }
     }
 
     public void Delete_Share_MultipleFile() throws InterruptedException {
@@ -479,9 +649,9 @@ public class FilesPage extends BasePage {
 
     }
 
-    public void Delete_Share_File_in_cloud() throws InterruptedException {
+    public void Delete_Share_File_in_cloud(String Checkbox1) throws InterruptedException {
 
-        WebElement file_checkbox = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FILE')][1]/div[@class='LVcheckBox']"));
+        WebElement file_checkbox = driver.findElement(By.xpath(Checkbox1));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -502,14 +672,14 @@ public class FilesPage extends BasePage {
 
     }
 
-    public void Advanced_Setting_ShareFile(String ShareEmail, String Message, String Share_Password, String Share_confirm_password) throws InterruptedException {
+    public void Advanced_Setting_ShareFile(String ShareEmail, String Message, String Share_Password, String Share_confirm_password,String FileName, String Checkbox) throws InterruptedException {
 
-        WebElement file_name = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FILE')][1]/div[@class='LVfileName']"));
+        WebElement file_name = driver.findElement(By.xpath(FileName));
         file_name.isDisplayed();
         String sharenamefile = file_name.getText();
         System.out.println(sharenamefile);
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -573,43 +743,63 @@ public class FilesPage extends BasePage {
         WebElement choose_data_click = driver.findElement(By.cssSelector(".ui-state-default.ui-state-hover"));
         choose_data_click.click();
         wait_sec();
+        try {
+            WebElement download_count_checkbox = driver.findElement(By.cssSelector("#setDownCount>span>input"));
+            download_count_checkbox.isDisplayed();
+            download_count_checkbox.click();
+            wait_sec();
 
-        WebElement download_count_checkbox = driver.findElement(By.cssSelector("#setDownCount>span>input"));
-        download_count_checkbox.isDisplayed();
-        download_count_checkbox.click();
-        wait_sec();
-
-        WebElement download_count_field = driver.findElement(By.cssSelector("#downloadCount"));
-        download_count_field.isDisplayed();
-        download_count_field.sendKeys("5");
-        wait_sec();
+            WebElement download_count_field = driver.findElement(By.cssSelector("#downloadCount"));
+            download_count_field.isDisplayed();
+            download_count_field.sendKeys("5");
+            wait_sec();
 
 
-        WebElement share_submit = driver.findElement(By.cssSelector("#shareSubmit"));
-        share_submit.click();
-        Thread.sleep(4000);
+            WebElement share_submit = driver.findElement(By.cssSelector("#shareSubmit"));
+            share_submit.click();
+            Thread.sleep(4000);
 
-        assertEquals("File(s) has been successfully shared.", driver.findElement(By.cssSelector("div.textoFull > span")).getText());
+            assertEquals("File(s) has been successfully shared.", driver.findElement(By.cssSelector("div.textoFull > span")).getText());
 
-        WebElement share_page_button = driver.findElement(By.cssSelector("#CFSharedByMe"));
-        share_page_button.click();
-        wait_sec();
-        wait_sec();
+            WebElement share_page_button = driver.findElement(By.cssSelector("#CFSharedByMe"));
+            share_page_button.click();
+            wait_sec();
+            wait_sec();
 
-        WebElement new_name_displayed = driver.findElement(By.xpath("//*[contains(text(), '" + sharenamefile + "')] | //*[@value='" + sharenamefile + "']"));
-        new_name_displayed.isDisplayed();
-        wait_sec();
+            WebElement new_name_displayed = driver.findElement(By.xpath("//*[contains(text(), '" + sharenamefile + "')] | //*[@value='" + sharenamefile + "']"));
+            new_name_displayed.isDisplayed();
+            wait_sec();
+        }
+        catch (Exception ok){
+
+            WebElement share_submit = driver.findElement(By.cssSelector("#shareSubmit"));
+            share_submit.click();
+            Thread.sleep(4000);
+
+            assertEquals("File(s) has been successfully shared.", driver.findElement(By.cssSelector("div.textoFull > span")).getText());
+
+            WebElement share_page_button = driver.findElement(By.cssSelector("#CFSharedByMe"));
+            share_page_button.click();
+            wait_sec();
+            wait_sec();
+
+            WebElement new_name_displayed = driver.findElement(By.xpath("//*[contains(text(), '" + sharenamefile + "')] | //*[@value='" + sharenamefile + "']"));
+            new_name_displayed.isDisplayed();
+            wait_sec();
+
+
+        }
 
     }
 
-    public void Advanced_Setting_ShareFile_negatibe(String ShareEmail, String Message) throws InterruptedException {
+    public void Advanced_Setting_ShareFile_negatibe(String ShareEmail, String Message,String FileName, String Checkbox) throws InterruptedException {
 
-        WebElement file_name = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FILE')][1]/div[@class='LVfileName']"));
+        WebElement file_name = driver.findElement(By.xpath(FileName));
         file_name.isDisplayed();
         String sharenamefile = file_name.getText();
         System.out.println(sharenamefile);
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -693,14 +883,14 @@ public class FilesPage extends BasePage {
 
     }
 
-    public void Edit_permision_ShareFile(String ShareEmail, String Message) throws InterruptedException {
+    public void Edit_permision_ShareFile(String ShareEmail, String Message,String FileName, String Checkbox) throws InterruptedException {
 
-        WebElement file_name = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FILE')][1]/div[@class='LVfileName']"));
+        WebElement file_name = driver.findElement(By.xpath(FileName));
         file_name.isDisplayed();
         String sharenamefile = file_name.getText();
         System.out.println(sharenamefile);
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -755,14 +945,14 @@ public class FilesPage extends BasePage {
 
     }
 
-    public void CoOwner_permision_ShareFile(String ShareEmail, String Message) throws InterruptedException {
+    public void CoOwner_permision_ShareFile(String ShareEmail, String Message,String FileName, String Checkbox) throws InterruptedException {
 
-        WebElement file_name = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FILE')][1]/div[@class='LVfileName']"));
+        WebElement file_name = driver.findElement(By.xpath(FileName));
         file_name.isDisplayed();
         String sharenamefile = file_name.getText();
         System.out.println(sharenamefile);
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+        WebElement file_checkbox = driver.findElement(By.cssSelector(Checkbox));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -840,8 +1030,8 @@ public class FilesPage extends BasePage {
 
 
         try {
-        WebElement share_with_me_button = driver.findElement(By.cssSelector("#CFSharedByMe"));
-        share_with_me_button.click();
+        WebElement share_by_me_button = driver.findElement(By.cssSelector("#CFSharedByMe"));
+        share_by_me_button.click();
         wait_sec();
 
         WebElement file_is_displayed = driver.findElement(By.cssSelector(".LVcheckBox>input"));
@@ -1097,37 +1287,74 @@ public class FilesPage extends BasePage {
     }
 
     public void All_button_isdisplayed() throws InterruptedException {
+        try {
+            WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+            file_checkbox.isDisplayed();
+            file_checkbox.click();
+            wait_sec();
+            wait_sec();
 
-        WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
-        file_checkbox.isDisplayed();
-        file_checkbox.click();
-        wait_sec();
-        wait_sec();
+            WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+            open_button.isDisplayed();
 
-        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
-        open_button.isDisplayed();
+            WebElement download_button = driver.findElement(By.cssSelector(".cf-cloud-download2"));
+            download_button.isDisplayed();
 
-        WebElement download_button = driver.findElement(By.cssSelector(".cf-cloud-download2"));
-        download_button.isDisplayed();
+            WebElement share_button = driver.findElement(By.cssSelector(".cf-share4"));
+            share_button.isDisplayed();
 
-        WebElement share_button = driver.findElement(By.cssSelector(".cf-share4"));
-        share_button.isDisplayed();
+            WebElement rename_button = driver.findElement(By.cssSelector(".cf-edit3"));
+            rename_button.isDisplayed();
 
-        WebElement rename_button = driver.findElement(By.cssSelector(".cf-edit3"));
-        rename_button.isDisplayed();
+            WebElement delete_button = driver.findElement(By.cssSelector(".cf-trashcan2"));
+            delete_button.isDisplayed();
 
-        WebElement delete_button = driver.findElement(By.cssSelector(".cf-trashcan2"));
-        delete_button.isDisplayed();
+            WebElement category_button = driver.findElement(By.cssSelector(".cf-cabinet3"));
+            category_button.isDisplayed();
 
-        WebElement category_button = driver.findElement(By.cssSelector(".cf-cabinet3"));
-        category_button.isDisplayed();
+            WebElement workspace_button = driver.findElement(By.cssSelector(".cf-workspace"));
+            workspace_button.isDisplayed();
 
-        WebElement workspace_button = driver.findElement(By.cssSelector(".cf-workspace"));
-        workspace_button.isDisplayed();
+            WebElement file_checkbox1 = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
+            file_checkbox1.click();
+            wait_sec();
 
-        WebElement file_checkbox1 = driver.findElement(By.cssSelector("div[name=FILE] > input[type=checkbox]"));
-        file_checkbox1.click();
-        wait_sec();
+        }
+        catch (Exception folder){
+
+            WebElement file_checkbox = driver.findElement(By.cssSelector("div[name=FOLDER] > input[type=checkbox]"));
+            file_checkbox.isDisplayed();
+            file_checkbox.click();
+            wait_sec();
+            wait_sec();
+
+            WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+            open_button.isDisplayed();
+
+//            WebElement download_button = driver.findElement(By.cssSelector(".cf-cloud-download2"));
+//            download_button.isDisplayed();
+
+            WebElement share_button = driver.findElement(By.cssSelector(".cf-share4"));
+            share_button.isDisplayed();
+
+            WebElement rename_button = driver.findElement(By.cssSelector(".cf-edit3"));
+            rename_button.isDisplayed();
+
+            WebElement delete_button = driver.findElement(By.cssSelector(".cf-trashcan2"));
+            delete_button.isDisplayed();
+
+//            WebElement category_button = driver.findElement(By.cssSelector(".cf-cabinet3"));
+//            category_button.isDisplayed();
+
+            WebElement workspace_button = driver.findElement(By.cssSelector(".cf-workspace"));
+            workspace_button.isDisplayed();
+
+            WebElement file_checkbox1 = driver.findElement(By.cssSelector("div[name=FOLDER] > input[type=checkbox]"));
+            file_checkbox1.click();
+            wait_sec();
+
+
+        }
 
     }
 
@@ -1368,6 +1595,23 @@ public class FilesPage extends BasePage {
         wait_sec();
         wait_sec();
 
+
+
+    }
+
+    public void Search_file(String SearchFile) throws InterruptedException {
+
+        WebElement Search_field = driver.findElement(By.id("CFHomeSearch"));
+        Search_field.isDisplayed();
+        Search_field.clear();
+        Search_field.sendKeys(SearchFile);
+        Thread.sleep(1000);
+        Search_field.sendKeys(Keys.ENTER);
+        wait_sec();
+        wait_sec();
+
+//        WebElement file_name = driver.findElement(By.id("mainContentWrapper"));
+//        assertThat(file_name,text(containsString(".jpg")));
 
 
     }

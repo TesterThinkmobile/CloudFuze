@@ -228,10 +228,13 @@ public class CloudPage extends BasePage {
         dropbox_button.click();
         wait_sec();
         wait_sec();
+        wait_sec();
+        wait_sec();
 
 
         for(String winHandle : driver.getWindowHandles()){
             driver.switchTo().window(winHandle);
+            wait_sec();
             wait_sec();
             wait_sec();
             wait_sec();
