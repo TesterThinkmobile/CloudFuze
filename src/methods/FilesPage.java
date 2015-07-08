@@ -1616,6 +1616,178 @@ public class FilesPage extends BasePage {
 
     }
 
+    public void My_clouds_page() throws InterruptedException {
+
+        WebElement my_clouds_page = driver.findElement(By.cssSelector("#mycloudstogle"));
+        my_clouds_page.isDisplayed();
+        my_clouds_page.click();
+        wait_sec();
+        wait_sec();
+
+
+    }
+
+    public void Google_drive() throws InterruptedException {
+
+        WebElement google_drive = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[1]/a"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", google_drive);
+        google_drive.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement google_drive_clouds = driver.findElement(By.cssSelector(".cloudDispName"));
+        google_drive_clouds.isDisplayed();
+        google_drive_clouds.click();
+        wait_sec();
+
+        WebElement container_is_displayed = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        container_is_displayed.isDisplayed();
+        wait_sec();
+
+
+    }
+
+    public void One_drive() throws InterruptedException {
+
+        WebElement oneDrive = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[2]/a"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", oneDrive);
+        oneDrive.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement oneDrive_clouds = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[2]/ul/li/p"));
+        oneDrive_clouds.isDisplayed();
+        oneDrive_clouds.click();
+        wait_sec();
+
+        WebElement container_is_displayed = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        container_is_displayed.isDisplayed();
+        wait_sec();
+
+
+    }
+
+    public void DropBox() throws InterruptedException {
+
+        WebElement dropbox = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[3]/a"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropbox);
+        dropbox.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement dropbox_clouds = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[3]/ul/li/p"));
+        dropbox_clouds.isDisplayed();
+        dropbox_clouds.click();
+        wait_sec();
+
+        WebElement container_is_displayed = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        container_is_displayed.isDisplayed();
+        wait_sec();
+
+
+    }
+
+    public void Yandex() throws InterruptedException {
+
+        WebElement yandex = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[4]/a"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", yandex);
+        yandex.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement yandex_clouds = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[4]/ul/li/p"));
+        yandex_clouds.isDisplayed();
+        yandex_clouds.click();
+        wait_sec();
+
+        WebElement container_is_displayed = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        container_is_displayed.isDisplayed();
+        wait_sec();
+
+
+    }
+
+    public void Box() throws InterruptedException {
+
+        WebElement box = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[5]/a"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", box);
+        box.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement box_clouds = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[5]/ul/li/p"));
+        box_clouds.isDisplayed();
+        box_clouds.click();
+        wait_sec();
+
+        WebElement container_is_displayed = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        container_is_displayed.isDisplayed();
+        wait_sec();
+
+
+    }
+
+    public void Amazon() throws InterruptedException {
+
+        WebElement amazon = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[6]/a"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", amazon);
+        amazon.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement amazon_clouds = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[6]/ul/li/p"));
+        amazon.isDisplayed();
+        amazon.click();
+        wait_sec();
+
+        WebElement container_is_displayed = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        container_is_displayed.isDisplayed();
+        wait_sec();
+
+
+    }
+
+    public void Egnyte() throws InterruptedException {
+
+        WebElement egnyte = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[7]/a"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", egnyte);
+        egnyte.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement egnyte_clouds = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[7]/ul/li/p"));
+        egnyte_clouds.isDisplayed();
+        egnyte_clouds.click();
+        wait_sec();
+
+        WebElement container_is_displayed = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        container_is_displayed.isDisplayed();
+        wait_sec();
+
+
+    }
+
+    public void Citrix() throws InterruptedException {
+
+        WebElement citrix_cloud = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[8]/a"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", citrix_cloud);
+        citrix_cloud.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement citrix_clouds = driver.findElement(By.xpath("html/body/nav[2]/ul/li[7]/ul/li[8]/ul/li/p"));
+        citrix_clouds.isDisplayed();
+        citrix_clouds.click();
+        wait_sec();
+
+        WebElement container_is_displayed = driver.findElement(By.cssSelector("#mainContentWrapper"));
+        container_is_displayed.isDisplayed();
+        wait_sec();
+
+
+    }
+
+
 
 
 

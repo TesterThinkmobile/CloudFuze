@@ -1459,5 +1459,40 @@ public class FilesPageTest extends BaseTest {
     }
 
 
+    @Test
+    public void X_My_clouds() throws InterruptedException {
+
+        goHome();
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        FilesPage filesPage = homePage.FilesPage();
+        filesPage.My_clouds_page();
+        filesPage.Google_drive();
+        //////////////////////////
+        filesPage.One_drive();
+        //////////////////////////
+        filesPage.DropBox();
+        //////////////////////////
+        filesPage.Yandex();
+        //////////////////////////
+        filesPage.Box();
+        //////////////////////////
+        filesPage.Amazon();
+        //////////////////////////
+        filesPage.Egnyte();
+        //////////////////////////
+        filesPage.Citrix();
+
+
+    }
+
+
+
+
 
 }
