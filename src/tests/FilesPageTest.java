@@ -1229,7 +1229,7 @@ public class FilesPageTest extends BaseTest {
 //---------------------------------------------------------------------------------------------
 
     @Test
-     public void H_Add_file_toFavorites() throws InterruptedException {
+     public void I_Add_file_toFavorites() throws InterruptedException {
 
         goHome();
 
@@ -1243,7 +1243,7 @@ public class FilesPageTest extends BaseTest {
         FilesPage filesPage = homePage.FilesPage();
         filesPage.Add_Favorites_File();
         filesPage.All_button_isdisplayed();
-        filesPage.Delete_File();
+        filesPage.Delete_Favourite_File();
 
     }
 
@@ -1263,9 +1263,9 @@ public class FilesPageTest extends BaseTest {
         FilesPage filesPage = homePage.FilesPage();
         filesPage.Category_Page();
         filesPage.Add_new_category(Name);
-        filesPage.Category_Page();
+        //filesPage.Category_Page();
         filesPage.Edit_category();
-        filesPage.Category_Page();
+       // filesPage.Category_Page();
         filesPage.Delete_category();
         filesPage.Category_Page();
 

@@ -1343,7 +1343,7 @@ public class WorkspacePage extends BasePage {
             WebElement upload_field = driver.findElement(By.cssSelector(".dz-default.dz-message"));
             upload_field.click();
             Thread.sleep(5000);
-            StringSelection ss = new StringSelection("Path");
+            StringSelection ss = new StringSelection(Path);
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 
             Robot robot = new Robot();

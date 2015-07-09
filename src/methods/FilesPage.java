@@ -1417,6 +1417,35 @@ public class FilesPage extends BasePage {
 
     }
 
+    public void Delete_Favourite_File() throws InterruptedException {
+
+        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
+        file_checkbox.isDisplayed();
+        file_checkbox.click();
+        wait_sec();
+
+        WebElement delete_button = driver.findElement(By.cssSelector(".cf-trashcan2"));
+        delete_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        WebElement delete_contetn_displayed = driver.findElement(By.cssSelector("#deletemodal"));
+        delete_contetn_displayed.isDisplayed();
+        wait_sec();
+
+        WebElement confirtm_delete_button = driver.findElement(By.cssSelector("#CFDeleteFavFile"));
+        confirtm_delete_button.click();
+        Thread.sleep(1000);
+
+        //assertEquals("Deleting...", driver.findElement(By.cssSelector("#deleting > span.active-link1")).getText());
+        wait_sec();
+
+        System.out.println("File is deleted");
+
+    }
+
+
     public void Delete_category_File() throws InterruptedException {
 
         WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
