@@ -713,7 +713,6 @@ public class WorkspacePageTest extends BaseTest {
 
         goHome();
 
-
         String Name = value + "name";
         String new_Email = value + "@yopmail.com";
         String Notes = value+value+value;
