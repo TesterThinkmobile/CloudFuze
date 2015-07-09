@@ -1,10 +1,7 @@
 package tests;
 
 
-import methods.FilesPage;
-import methods.HomePage;
-import methods.SettingsPage;
-import methods.StartPage;
+import methods.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -151,6 +148,9 @@ public class SettingsPageTest extends BaseTest {
 
 
     }
+
+
+
 
 
 

@@ -106,7 +106,7 @@ public class HomePage extends BasePage {
         driver.manage().window().maximize();
 
         //settings button
-        WebElement settings_button = driver.findElement(By.cssSelector(".container-fluid>div>ul>span>a"));
+        WebElement settings_button = driver.findElement(By.linkText("Settings"));
         settings_button.click();
         wait_sec();
         wait_sec();
@@ -120,6 +120,47 @@ public class HomePage extends BasePage {
 
 
         return new SettingsPage();
+    }
+
+    public NotificationPage NotificationPage() throws InterruptedException {
+
+        // window maximize
+        driver.manage().window().maximize();
+
+        WebElement notification_button = driver.findElement(By.cssSelector(".cf-bell"));
+        notification_button.click();
+        wait_sec();
+
+        WebElement notification_list= driver.findElement(By.cssSelector("#cf_notification"));
+        notification_list.isDisplayed();
+        wait_sec();
+        wait_sec();
+
+
+        return new NotificationPage();
+    }
+
+    public DeleteCloudPage DeleteCloudPage() throws InterruptedException {
+
+        // window maximize
+        driver.manage().window().maximize();
+
+        WebElement cloud_button = driver.findElement(By.cssSelector(".icon-cloud"));
+        cloud_button.click();
+        wait_sec();
+
+        WebElement manage_clouds = driver.findElement(By.cssSelector("#cm-managecloud>a"));
+        manage_clouds.isDisplayed();
+        manage_clouds.click();
+        wait_sec();
+        wait_sec();
+
+        WebElement table_box_displayed = driver.findElement(By.cssSelector(".tabbable.box"));
+        table_box_displayed.isDisplayed();
+        wait_sec();
+
+
+        return new DeleteCloudPage();
     }
 
 }

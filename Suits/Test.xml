@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="DRH.Tests" verbose="1">
+    <test name="Chrome_Tests">
+
+        <classes>
+            <class name="tests.StartPageTest"/>
+            <class name="tests.CloudPageTest"/>
+            <class name="tests.WorkspacePageTest"/>
+            <class name="tests.FilesPageTest"/>
+            <class name="tests.SettingsPageTest"/>
+            <class name="tests.NotificationPageTest"/>
+            <class name="tests.DeleteCloudPageTest"/>
+
+        </classes>
+    </test>
+</suite>
