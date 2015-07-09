@@ -100,4 +100,26 @@ public class HomePage extends BasePage {
         return new FilesPage();
     }
 
+    public SettingsPage SettingsPage() throws InterruptedException {
+
+        // window maximize
+        driver.manage().window().maximize();
+
+        //settings button
+        WebElement settings_button = driver.findElement(By.cssSelector(".container-fluid>div>ul>span>a"));
+        settings_button.click();
+        wait_sec();
+        wait_sec();
+
+        //title is displayed
+        WebElement title_isDisplayed = driver.findElement(By.cssSelector("#infotitle"));
+        title_isDisplayed.isDisplayed();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+
+        return new SettingsPage();
+    }
+
 }
