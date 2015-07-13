@@ -145,7 +145,7 @@ public class CloudPage extends BasePage {
 
         WebElement enter_button = driver.findElement(By.cssSelector("#idSIButton9"));
         enter_button.click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
 
 
@@ -196,7 +196,7 @@ public class CloudPage extends BasePage {
 
         WebElement enter_button = driver.findElement(By.cssSelector("#idSIButton9"));
         enter_button.click();
-        Thread.sleep(2000);
+        Thread.sleep(2500);
 
 
             driver.switchTo().window(winHandleBefore);
@@ -207,6 +207,8 @@ public class CloudPage extends BasePage {
 
     public void Check_result_onedrive() throws InterruptedException {
 
+        wait_sec();
+        wait_sec();
         WebElement manage_clouds_button = driver.findElement(By.cssSelector("#cm-managecloud>a"));
         manage_clouds_button.click();
         wait_sec();
