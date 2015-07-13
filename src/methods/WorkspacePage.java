@@ -742,19 +742,19 @@ public class WorkspacePage extends BasePage {
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
         wait_sec();
-        new Actions(driver).moveToElement(driver.findElement(By.xpath("//i[@name='Workspace']"))).perform();
-        new Actions(driver).moveToElement(driver.findElement(By.cssSelector(".fileCheck"))).perform();
-        wait_sec();
-        WebElement file_checkbox = driver.findElement(By.cssSelector(".fileCheck"));
+//        new Actions(driver).moveToElement(driver.findElement(By.xpath("//i[@name='Workspace']"))).perform();
+//        new Actions(driver).moveToElement(driver.findElement(By.cssSelector(".fileCheck"))).perform();
+//        wait_sec();
+        WebElement file_checkbox = driver.findElement(By.xpath("//i[@name='Workspace']"));
         file_checkbox.click();
         wait_sec();
         wait_sec();
         wait_sec();
 
-        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
-        open_button.click();
-        wait_sec();
-        wait_sec();
+//        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+//        open_button.click();
+//        wait_sec();
+//        wait_sec();
 
         try{
             WebElement comments_button = driver.findElement(By.cssSelector("#getComments"));
@@ -832,19 +832,21 @@ public class WorkspacePage extends BasePage {
             WebElement workspace1 = driver.findElement(By.cssSelector("#mainContentWrapper"));
             workspace1.isDisplayed();
             wait_sec();
-            new Actions(driver).moveToElement(driver.findElement(By.xpath("//i[@name='Workspace']"))).perform();
-            new Actions(driver).moveToElement(driver.findElement(By.cssSelector(".fileCheck"))).perform();
-            wait_sec();
+//            new Actions(driver).moveToElement(driver.findElement(By.xpath("//i[@name='Workspace']"))).perform();
+//            new Actions(driver).moveToElement(driver.findElement(By.cssSelector(".fileCheck"))).perform();
+//            wait_sec();
 
-            WebElement file_checkbox1 = driver.findElement(By.cssSelector(".fileCheck"));
+
+            // workspace
+            WebElement file_checkbox1 = driver.findElement(By.xpath("//i[@name='Workspace']"));
             file_checkbox1.click();
             wait_sec();
             wait_sec();
 
-            WebElement open_button1= driver.findElement(By.cssSelector(".cf-eye8"));
-            open_button1.click();
-            wait_sec();
-            wait_sec();
+//            WebElement open_button1= driver.findElement(By.cssSelector(".cf-eye8"));
+//            open_button1.click();
+//            wait_sec();
+//            wait_sec();
             //--------------------------------------
             WebElement comments_button = driver.findElement(By.cssSelector("#getComments"));
             comments_button.isDisplayed();
@@ -881,19 +883,20 @@ public class WorkspacePage extends BasePage {
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
         wait_sec();
-        new Actions(driver).moveToElement(driver.findElement(By.xpath("//i[@name='Workspace']"))).perform();
-        new Actions(driver).moveToElement(driver.findElement(By.cssSelector(".fileCheck"))).perform();
-        wait_sec();
-        WebElement file_checkbox = driver.findElement(By.cssSelector(".fileCheck"));
+//        new Actions(driver).moveToElement(driver.findElement(By.xpath("//i[@name='Workspace']"))).perform();
+//        new Actions(driver).moveToElement(driver.findElement(By.cssSelector(".fileCheck"))).perform();
+//        wait_sec();
+        // workspace
+        WebElement file_checkbox = driver.findElement(By.xpath("//i[@name='Workspace']"));
         file_checkbox.click();
         wait_sec();
         wait_sec();
         wait_sec();
 
-        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
-        open_button.click();
-        wait_sec();
-        wait_sec();
+//        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+//        open_button.click();
+//        wait_sec();
+//        wait_sec();
 
         try{
             WebElement comments_button = driver.findElement(By.cssSelector("#getComments"));
@@ -977,17 +980,18 @@ public class WorkspacePage extends BasePage {
             WebElement workspace1 = driver.findElement(By.cssSelector("#mainContentWrapper"));
             workspace1.isDisplayed();
             wait_sec();
-            new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).perform();
+            //new Actions(driver).moveToElement(driver.findElement(By.xpath("html/body/section/div[2]/div/div[3]/div/div[2]/div[1]/i[1]"))).perform();
 
-            WebElement file_checkbox1 = driver.findElement(By.cssSelector(".fileCheck"));
+            // workspace
+            WebElement file_checkbox1 = driver.findElement(By.xpath("//i[@name='Workspace']"));
             file_checkbox1.click();
             wait_sec();
             wait_sec();
 
-            WebElement open_button1= driver.findElement(By.cssSelector(".cf-eye8"));
-            open_button1.click();
-            wait_sec();
-            wait_sec();
+//            WebElement open_button1= driver.findElement(By.cssSelector(".cf-eye8"));
+//            open_button1.click();
+//            wait_sec();
+//            wait_sec();
             //--------------------------------------
             WebElement comments_button = driver.findElement(By.cssSelector("#getComments"));
             comments_button.isDisplayed();
@@ -1031,19 +1035,20 @@ public class WorkspacePage extends BasePage {
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));
         workspace.isDisplayed();
         wait_sec();
-        new Actions(driver).moveToElement(driver.findElement(By.xpath("//i[@name='Workspace']"))).perform();
-        new Actions(driver).moveToElement(driver.findElement(By.cssSelector(".fileCheck"))).perform();
-        wait_sec();
-        WebElement file_checkbox = driver.findElement(By.cssSelector(".fileCheck"));
+//        new Actions(driver).moveToElement(driver.findElement(By.xpath("//i[@name='Workspace']"))).perform();
+//        new Actions(driver).moveToElement(driver.findElement(By.cssSelector(".fileCheck"))).perform();
+//        wait_sec();
+        // workspace
+        WebElement file_checkbox = driver.findElement(By.xpath("//i[@name='Workspace']"));
         file_checkbox.click();
         wait_sec();
         wait_sec();
         wait_sec();
 
-        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
-        open_button.click();
-        wait_sec();
-        wait_sec();
+//        WebElement open_button = driver.findElement(By.cssSelector(".cf-eye8"));
+//        open_button.click();
+//        wait_sec();
+//        wait_sec();
 
 
             WebElement comments_button = driver.findElement(By.cssSelector("#getComments"));
