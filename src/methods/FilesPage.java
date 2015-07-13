@@ -282,7 +282,7 @@ public class FilesPage extends BasePage {
         file_checkbox.click();
         wait_sec();
 
-        WebElement share_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[6]/div/div[1]"));
+        WebElement share_button = driver.findElement(By.xpath("//a[@id='CFAShare']/div/div"));
         share_button.click();
         wait_sec();
         wait_sec();
@@ -339,7 +339,7 @@ public class FilesPage extends BasePage {
         file_checkbox.click();
         wait_sec();
 
-        WebElement share_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[6]/div/div[1]"));
+        WebElement share_button = driver.findElement(By.xpath("//a[@id='CFAShare']/div/div"));
         share_button.click();
         wait_sec();
         wait_sec();
@@ -395,7 +395,7 @@ public class FilesPage extends BasePage {
         file_checkbox.click();
         wait_sec();
 
-        WebElement share_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[6]/div/div[1]"));
+        WebElement share_button = driver.findElement(By.xpath("//a[@id='CFAShare']/div/div"));
         share_button.click();
         wait_sec();
         wait_sec();
@@ -473,7 +473,7 @@ public class FilesPage extends BasePage {
             file_checkbox.click();
             wait_sec();
         }
-        WebElement share_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[6]/div/div[1]"));
+        WebElement share_button = driver.findElement(By.xpath("//a[@id='CFAShare']/div/div"));
         share_button.click();
         wait_sec();
         wait_sec();
@@ -535,7 +535,7 @@ public class FilesPage extends BasePage {
             file_checkbox.click();
             wait_sec();
         }
-        WebElement share_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[6]/div/div[1]"));
+        WebElement share_button = driver.findElement(By.xpath("//a[@id='CFAShare']/div/div"));
         share_button.click();
         wait_sec();
         wait_sec();
@@ -633,7 +633,7 @@ public class FilesPage extends BasePage {
         file_checkbox.click();
         wait_sec();
 
-        WebElement delete_file = driver.findElement(By.cssSelector(".cf-trashcan2"));
+        WebElement delete_file = driver.findElement(By.xpath("//a[@id='CFHDelete']/div/div"));
         delete_file.isDisplayed();
         delete_file.click();
         wait_sec();
@@ -684,7 +684,7 @@ public class FilesPage extends BasePage {
         file_checkbox.click();
         wait_sec();
 
-        WebElement share_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[6]/div/div[1]"));
+        WebElement share_button = driver.findElement(By.xpath("//a[@id='CFAShare']/div/div"));
         share_button.click();
         wait_sec();
         wait_sec();
@@ -804,7 +804,7 @@ public class FilesPage extends BasePage {
         file_checkbox.click();
         wait_sec();
 
-        WebElement share_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[6]/div/div[1]"));
+        WebElement share_button = driver.findElement(By.xpath("//a[@id='CFAShare']/div/div"));
         share_button.click();
         wait_sec();
         wait_sec();
@@ -895,7 +895,7 @@ public class FilesPage extends BasePage {
         file_checkbox.click();
         wait_sec();
 
-        WebElement share_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[6]/div/div[1]"));
+        WebElement share_button = driver.findElement(By.xpath("//a[@id='CFAShare']/div/div"));
         share_button.click();
         wait_sec();
         wait_sec();
@@ -957,7 +957,7 @@ public class FilesPage extends BasePage {
         file_checkbox.click();
         wait_sec();
 
-        WebElement share_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[6]/div/div[1]"));
+        WebElement share_button = driver.findElement(By.xpath("//a[@id='CFAShare']/div/div"));
         share_button.click();
         wait_sec();
         wait_sec();
@@ -1253,7 +1253,7 @@ public class FilesPage extends BasePage {
         file_checkbox.click();
         wait_sec();
 
-        WebElement category_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[9]/div/div[1]"));
+        WebElement category_button = driver.findElement(By.xpath("//a[@id='addToCategory']/div/div"));
         category_button.click();
         wait_sec();
         wait_sec();
@@ -1361,12 +1361,12 @@ public class FilesPage extends BasePage {
 
     public void Workspace_File() throws InterruptedException {
 
-        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
+        WebElement file_checkbox = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FILE')][1]/div[@class='LVcheckBox']"));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
 
-        WebElement workspace_button = driver.findElement(By.xpath("html/body/section/div[1]/div[3]/div[1]/a[10]/div/div[1]"));
+        WebElement workspace_button = driver.findElement(By.xpath("//a[@id='addToWorkspace']/div/div"));
         workspace_button.click();
         wait_sec();
         wait_sec();
@@ -1391,7 +1391,7 @@ public class FilesPage extends BasePage {
 
     public void Delete_File() throws InterruptedException {
 
-        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
+        WebElement file_checkbox = driver.findElement(By.xpath(".//*[@id='LVContent']/div[starts-with(@data-type,'FILE')][1]/div[@class='LVcheckBox']"));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -1419,7 +1419,7 @@ public class FilesPage extends BasePage {
 
     public void Delete_Favourite_File() throws InterruptedException {
 
-        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
+        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -1448,7 +1448,7 @@ public class FilesPage extends BasePage {
 
     public void Delete_category_File() throws InterruptedException {
 
-        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
+        WebElement file_checkbox = driver.findElement(By.xpath("html/body/section/div[2]/div[5]/div/div[4]/div/div[3]/div[1]/div[1]/input"));
         file_checkbox.isDisplayed();
         file_checkbox.click();
         wait_sec();
@@ -1479,7 +1479,7 @@ public class FilesPage extends BasePage {
         String namefile = file_name.getText();
         System.out.println(namefile);
 
-        WebElement  favourite_file_button = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[3]/a"));
+        WebElement  favourite_file_button = driver.findElement(By.xpath("html/body/section/div[2]/div[5]/div/div[4]/div/div[3]/div[1]/div[3]/a"));
         favourite_file_button.click();
         wait_sec();
 
@@ -1511,7 +1511,7 @@ public class FilesPage extends BasePage {
             String namefile1 = file_name1.getText();
             System.out.println(namefile1);
 
-            WebElement  favourite_file_button1 = driver.findElement(By.xpath("html/body/section/div[1]/div[5]/div/div[4]/div/div[3]/div[1]/div[3]/a"));
+            WebElement  favourite_file_button1 = driver.findElement(By.xpath("html/body/section/div[2]/div[5]/div/div[4]/div/div[3]/div[1]/div[3]/a"));
             favourite_file_button1.click();
             wait_sec();
 
