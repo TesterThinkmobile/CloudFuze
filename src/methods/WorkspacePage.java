@@ -878,6 +878,33 @@ public class WorkspacePage extends BasePage {
 
     }
 
+    public void Check_in_email(String new_Email) throws InterruptedException {
+
+
+        //go to email
+        driver.get("http://www.yopmail.com/");
+        wait_sec();
+        wait_sec();
+
+        WebElement login_field = driver.findElement(By.cssSelector("#login"));
+        login_field.sendKeys(new_Email);
+        System.out.println(new_Email);
+        wait_sec();
+
+        WebElement submit_button = driver.findElement(By.cssSelector(".sbut"));
+        submit_button.click();
+        wait_sec();
+        wait_sec();
+        wait_sec();
+
+        driver.switchTo().frame("ifmail");//(driver.findElement(By.cssSelector(".couponBlock>tbody>tr>td>table>tbody>tr>td>a")));
+        WebElement activate_link_button = driver.findElement(By.cssSelector("#mailmillieu>div>a"));
+        activate_link_button.click();
+        wait_sec();
+        wait_sec();
+
+    }
+
     public void Edit_comments_to_workspace() throws InterruptedException, AWTException {
 
         WebElement workspace = driver.findElement(By.cssSelector("#mainContentWrapper"));

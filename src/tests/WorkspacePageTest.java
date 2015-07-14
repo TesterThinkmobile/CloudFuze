@@ -94,6 +94,47 @@ public class WorkspacePageTest extends BaseTest {
     }
 
     @Test
+    public void C_Create_workspace_and_check_email() throws InterruptedException {
+
+        goHome();
+
+        String Name = value + "name";
+        String new_Email = value + "@yopmail.com";
+        String Notes = value+value+value;
+
+
+        StartPage startPage = new StartPage();
+        String Email = startPage.getProperty("email.forwork");
+        String Password = startPage.getProperty("password.forwork");
+        startPage.Login(Email, Password);
+        startPage.finishLogin();
+        HomePage homePage = new HomePage();
+        WorkspacePage workspacePage = homePage.WorkspacePage();
+        workspacePage.Create_Workspace(Name, new_Email, Notes);
+        //workspacePage.Advanced_settings_in_Create_Workspace(Password);
+        workspacePage.Create_button(Password);
+        wait_sec();
+        workspacePage.Check_in_email(new_Email);
+        String originalHandle = getDriver().getWindowHandle();
+        for (String handle : getDriver().getWindowHandles()) {
+            if (!handle.equals(originalHandle)) {
+                getDriver().switchTo().window(handle);
+                wait_sec();
+                wait_sec();
+                wait_sec();
+                getDriver().close();
+            }
+        }
+        getDriver().switchTo().window(originalHandle);
+
+
+        goHome();
+        homePage.WorkspacePage();
+        workspacePage.Delete_workspace();
+
+    }
+
+    @Test
     public void C_Create_workspace_with_adnvaced_settings_withEditPermissions() throws InterruptedException {
 
         goHome();
